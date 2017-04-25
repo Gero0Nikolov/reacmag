@@ -54,7 +54,7 @@
 			<span class="bar"></span>
 		</button>
 		<div id="menu" class="menu-holder">
-			<?php wp_nav_menu( array( "menu" => 2 ) ); ?>
+			<?php wp_nav_menu( array( "menu" => "menu-1" ) ); ?>
 		</div>
 	</div>
 

@@ -782,6 +782,16 @@ object {
   .sticky-bar .right {
     display: inline-block;
     vertical-align: middle; }
+  .sticky-bar .left,
+  .sticky-bar .right {
+    width: 25%; }
+  .sticky-bar .middle {
+    width: 50%;
+    text-align: center; }
+  .sticky-bar .left {
+    text-align: left; }
+  .sticky-bar .right {
+    text-align: right; }
   .sticky-bar .logo-anchor {
     text-decoration: none;
     outline: 0;

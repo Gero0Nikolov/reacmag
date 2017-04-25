@@ -943,6 +943,12 @@ $button_font : 'PlayFair Display', serif;
 		vertical-align: middle;
 	}
 
+	.left,
+	.right { width: 25%; }
+	.middle { width: 50%; text-align: center; }
+	.left { text-align: left; }
+	.right { text-align: right; }
+
 	.logo-anchor {
 		text-decoration: none;
 		outline: 0;
