@@ -13,7 +13,18 @@
 
 	</div><!-- #content -->
 
-	<footer id="colophon" class="site-footer" role="contentinfo">	
+	<footer id="colophon" class="site-footer" role="contentinfo">
+		<div class="footer-menu">
+			<a href="#!" class="footer-link">About us</a>
+			<span class="dotter">&bull;</span>
+			<a href="#!" class="footer-link">Contact us</a>
+			<span class="dotter">&bull;</span>
+			<a href="#!" class="footer-link">Promote</a>
+			<span class="dotter">&bull;</span>
+			<a href="#!" class="social-link fa fa-instagram"></a>
+			<span class="dotter">&bull;</span>
+			<a href="#!" class="social-link fa fa-facebook"></a>
+		</div>
 	</footer><!-- #colophon -->
 </div><!-- #page -->
 

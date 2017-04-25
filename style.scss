@@ -988,9 +988,9 @@ $content_font : 'Cabin', sans-serif;
 
 .site-content {
 	display: block;
-	position: absolute;
+	position: relative;
 	width: 100%;
-	top: 7.5em;
+	margin-top: 7.5em;
 	padding: 0 10%;
 	overflow-x: hidden;
 	overflow-y: hidden;
@@ -1261,6 +1261,55 @@ $content_font : 'Cabin', sans-serif;
 				}
 			}
 		}
+	}
+}
+
+.site-footer {
+	display: block;
+	width: 100%;
+	background: #000;
+	padding: 1em 10%;
+	text-align: center;
+
+	.footer-menu,
+	.social-menu { display: block; }
+
+	.footer-link {
+		display: inline-block;
+		font-family: "PlayFair Display", serif;
+		font-size: 1.25rem;
+		font-weight: normal;
+		color: #fff;
+		text-decoration: none;
+		letter-spacing: 1px;
+		padding: 0.5em;
+		vertical-align: middle;
+
+		&:hover,
+		&:active,
+		&:focus { color: #3498db; }
+	}
+
+	.social-link {
+		display: inline-block;
+	    font-size: 1.5rem;
+	    font-weight: normal;
+	    color: #fff;
+	    text-decoration: none;
+	    padding: 0.25em;
+		vertical-align: middle;
+
+		&:hover,
+		&:active,
+		&:focus { color: #2ecc71; }
+	}
+
+	.dotter {
+		display: inline-block;
+	    vertical-align: middle;
+	    font-size: 1.25rem;
+	    color: #777;
+	    margin: 0 0.25em;
 	}
 }
 
