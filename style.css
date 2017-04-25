@@ -1164,7 +1164,7 @@ object {
   .global-search .search-form {
     display: block;
     width: 750px;
-    max-width: 95%; }
+    max-width: 90%; }
     .global-menu .search-form .search-field,
     .global-search .search-form .search-field {
       display: block;
