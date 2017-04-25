@@ -899,6 +899,7 @@ object {
 // Fonts
 $title_font : 'PlayFair Display', serif;
 $content_font : 'Cabin', sans-serif;
+$button_font : 'PlayFair Display', serif;
 
 .sticky-bar {
 	display: flex;
@@ -1038,7 +1039,7 @@ $content_font : 'Cabin', sans-serif;
     		padding: 0.5em;
 
 			.header {
-			    font-family: "PlayFair Display", serif;
+			    font-family: $button_font;
 				font-size: 4rem;
 				font-weight: normal;
 			    color: #fff;
@@ -1100,7 +1101,7 @@ $content_font : 'Cabin', sans-serif;
 			    width: 100%;
 			    margin: 0;
 			    padding: 0.5em;
-			    font-family: "PlayFair Display", serif;
+			    font-family: $button_font;
 			    font-size: 2rem;
 				font-weight: normal;
 			    letter-spacing: 1px;
@@ -1150,7 +1151,7 @@ $content_font : 'Cabin', sans-serif;
 		    padding: 0 3em 0 0;
 
 			.header {
-				font-family: "PlayFair Display", serif;
+				font-family: $button_font;
 			    font-size: 3rem;
 			    font-weight: normal;
 			    color: #333;
@@ -1187,7 +1188,7 @@ $content_font : 'Cabin', sans-serif;
 
 		.header {
 			display: block;
-			font-family: "PlayFair Display", serif;
+			font-family: $button_font;
 			font-size: 3rem;
 			font-weight: normal;
 			color: #333;
@@ -1253,7 +1254,7 @@ $content_font : 'Cabin', sans-serif;
 					width: 100%;
 					margin: 0;
 					padding: 0.5em;
-					font-family: "PlayFair Display", serif;
+					font-family: $button_font;
 					font-size: 2rem;
 					font-weight: normal;
 					letter-spacing: 1px;
@@ -1276,7 +1277,7 @@ $content_font : 'Cabin', sans-serif;
 
 	.footer-link {
 		display: inline-block;
-		font-family: "PlayFair Display", serif;
+		font-family: $button_font;
 		font-size: 1.25rem;
 		font-weight: normal;
 		color: #fff;
@@ -1315,7 +1316,7 @@ $content_font : 'Cabin', sans-serif;
 
 // Buttons
 .button {
-	font-family: "Playfair Display", serif;
+	font-family: $button_font;
 	font-size: 1.25rem;
 	font-weight: normal;
 	padding: 0.5em;
@@ -1325,7 +1326,7 @@ $content_font : 'Cabin', sans-serif;
 
 .read-more {
 	display: inline-block;
-	font-family: "PlayFair Display", serif;
+	font-family: $button_font;
 	font-size: 1.15rem;
 	color: #333;
 	text-decoration: none;
