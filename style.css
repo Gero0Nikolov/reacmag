@@ -830,11 +830,8 @@ object {
     height: 15em;
     background: #fff;
     font-size: 3rem;
-    border: 1px solid #333;
-    margin-bottom: 1em;
-    background-image: url(https://images.unsplash.com/photo-1483647195573-d3128d9b67be);
-    background-size: cover;
-    background-position: center; }
+    border: none;
+    margin-bottom: 1em; }
     .site-content .banner:before, .site-content .banner:after {
       display: inline-block;
       content: " ";
@@ -850,6 +847,16 @@ object {
       right: 0;
       top: calc(60% - 1px);
       transform: translate(100%, 0); }
+    .site-content .banner .owl-carousel,
+    .site-content .banner .owl-stage-outer,
+    .site-content .banner .owl-stage {
+      height: 100%; }
+    .site-content .banner .owl-item {
+      background-size: cover;
+      background-position: center;
+      position: relative;
+      width: 100%;
+      height: 100%; }
     .site-content .banner .content {
       display: block;
       position: absolute;

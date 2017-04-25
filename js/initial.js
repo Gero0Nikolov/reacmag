@@ -62,4 +62,18 @@ jQuery( document ).ready(function(){
             } );
         }
     } );
+
+    jQuery( '.owl-carousel' ).owlCarousel({
+	    center: true,
+	    items: 1,
+	    loop: true,
+	    margin: 0,
+        dots: false,
+        autoplay: true,
+	    responsive:{
+	        600:{
+	            items:1
+	        }
+	    }
+	});
 });
