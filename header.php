@@ -48,4 +48,22 @@
 		</div>
 	</header><!-- #masthead -->
 
+	<div id="global-menu" class="global-menu">
+		<button id="menu-closer" class="close-button">
+			<span class="bar"></span>
+			<span class="bar"></span>
+		</button>
+		<div id="menu" class="menu-holder">
+			<?php wp_nav_menu( array( "menu" => 2 ) ); ?>
+		</div>
+	</div>
+
+	<div id="global-search" class="global-search">
+		<button id="search-closer" class="close-button">
+			<span class="bar"></span>
+			<span class="bar"></span>
+		</button>
+		<?php get_search_form( true ); ?>
+	</div>
+
 	<div id="content" class="site-content">
