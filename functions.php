@@ -106,7 +106,10 @@ add_action( 'widgets_init', 'reacmag_widgets_init' );
  */
 function reacmag_scripts() {
 	wp_enqueue_style( 'reacmag-style', get_stylesheet_uri() );
+	wp_enqueue_style( 'geronikolov-animate', get_template_directory_uri() . "/animate.css" );
+	wp_enqueue_style( 'geronikolov-font-awesome', get_template_directory_uri() . "/css/font-awesome/css/font-awesome.min.css" );
 
+	wp_enqueue_script( 'geronikolov-initial', get_template_directory_uri() . '/js/initial.js', array( "jquery" ), "", true );
 	wp_enqueue_script( 'reacmag-navigation', get_template_directory_uri() . '/js/navigation.js', array(), '20151215', true );
 
 	wp_enqueue_script( 'reacmag-skip-link-focus-fix', get_template_directory_uri() . '/js/skip-link-focus-fix.js', array(), '20151215', true );
@@ -141,3 +144,7 @@ require get_template_directory() . '/inc/customizer.php';
  * Load Jetpack compatibility file.
  */
 require get_template_directory() . '/inc/jetpack.php';
+
+function get_view( $view_name ) {
+	return get_template_directory() . "/views/". $view_name;
+}
