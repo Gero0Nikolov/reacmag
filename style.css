@@ -772,7 +772,8 @@ object {
     position: absolute;
     width: 10%;
     height: 1px;
-    background: #000; }
+    background: #000;
+    top: calc(50% - 1px); }
   .sticky-bar:before {
     left: 0; }
   .sticky-bar:after {

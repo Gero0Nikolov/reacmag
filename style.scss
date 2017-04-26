@@ -931,6 +931,7 @@ $button_font : 'PlayFair Display', serif;
 		width: 10%;
 		height: 1px;
 		background: #000;
+		top: calc(50% - 1px);
 	}
 
 	&:before { left: 0; }
