@@ -16,7 +16,7 @@
 <!-- 7. WordPress will then import each of the posts, pages, comments, categories, etc. -->
 <!--    contained in this file into your site. -->
 
-<!-- generator="WordPress/4.7.3" created="2017-04-25 13:12" -->
+<!-- generator="WordPress/4.7.4" created="2017-04-26 07:58" -->
 <rss version="2.0"
 	xmlns:excerpt="http://wordpress.org/export/1.1/excerpt/"
 	xmlns:content="http://purl.org/rss/1.0/modules/content/"
@@ -29,7 +29,7 @@
 	<title>Clean WP</title>
 	<link>http://localhost/clean-wp</link>
 	<description>Just another WordPress site</description>
-	<pubDate>Tue, 25 Apr 2017 13:12:33 +0000</pubDate>
+	<pubDate>Wed, 26 Apr 2017 07:58:22 +0000</pubDate>
 	<language></language>
 	<wp:wxr_version>1.1</wp:wxr_version>
 	<wp:base_site_url>http://localhost/clean-wp</wp:base_site_url>
@@ -62,7 +62,7 @@
 		</wp:postmeta>
 		<wp:postmeta>
 			<wp:meta_key>field_58ff4a3e74ce3</wp:meta_key>
-			<wp:meta_value><![CDATA[a:14:{s:3:"key";s:19:"field_58ff4a3e74ce3";s:5:"label";s:12:"Slider posts";s:4:"name";s:12:"slider_posts";s:4:"type";s:4:"text";s:12:"instructions";s:19:"SET IT TO REPEATER!";s:8:"required";s:1:"0";s:13:"default_value";s:0:"";s:11:"placeholder";s:0:"";s:7:"prepend";s:0:"";s:6:"append";s:0:"";s:10:"formatting";s:4:"html";s:9:"maxlength";s:0:"";s:17:"conditional_logic";a:3:{s:6:"status";s:1:"0";s:5:"rules";a:1:{i:0;a:3:{s:5:"field";s:4:"null";s:8:"operator";s:2:"==";s:5:"value";s:0:"";}}s:8:"allorany";s:3:"all";}s:8:"order_no";i:0;}]]></wp:meta_value>
+			<wp:meta_value><![CDATA[a:14:{s:3:"key";s:19:"field_58ff4a3e74ce3";s:5:"label";s:12:"Slider posts";s:4:"name";s:12:"slider_posts";s:4:"type";s:12:"relationship";s:12:"instructions";s:0:"";s:8:"required";s:1:"0";s:13:"return_format";s:6:"object";s:9:"post_type";a:1:{i:0;s:4:"post";}s:8:"taxonomy";a:1:{i:0;s:3:"all";}s:7:"filters";a:1:{i:0;s:6:"search";}s:15:"result_elements";a:1:{i:0;s:9:"post_type";}s:3:"max";s:0:"";s:17:"conditional_logic";a:3:{s:6:"status";s:1:"0";s:5:"rules";a:1:{i:0;a:3:{s:5:"field";s:4:"null";s:8:"operator";s:2:"==";s:5:"value";s:0:"";}}s:8:"allorany";s:3:"all";}s:8:"order_no";i:0;}]]></wp:meta_value>
 		</wp:postmeta>
 		<wp:postmeta>
 			<wp:meta_key>field_58ff4a6374ce4</wp:meta_key>
@@ -70,11 +70,11 @@
 		</wp:postmeta>
 		<wp:postmeta>
 			<wp:meta_key>field_58ff4a9174ce5</wp:meta_key>
-			<wp:meta_value><![CDATA[a:14:{s:3:"key";s:19:"field_58ff4a9174ce5";s:5:"label";s:13:"Featured post";s:4:"name";s:13:"featured_post";s:4:"type";s:12:"relationship";s:12:"instructions";s:0:"";s:8:"required";s:1:"0";s:13:"return_format";s:6:"object";s:9:"post_type";a:1:{i:0;s:4:"post";}s:8:"taxonomy";a:1:{i:0;s:3:"all";}s:7:"filters";a:1:{i:0;s:6:"search";}s:15:"result_elements";a:2:{i:0;s:14:"featured_image";i:1;s:9:"post_type";}s:3:"max";s:1:"1";s:17:"conditional_logic";a:3:{s:6:"status";s:1:"0";s:5:"rules";a:1:{i:0;a:3:{s:5:"field";s:4:"null";s:8:"operator";s:2:"==";s:5:"value";s:0:"";}}s:8:"allorany";s:3:"all";}s:8:"order_no";i:2;}]]></wp:meta_value>
+			<wp:meta_value><![CDATA[a:14:{s:3:"key";s:19:"field_58ff4a9174ce5";s:5:"label";s:13:"Featured post";s:4:"name";s:13:"featured_post";s:4:"type";s:12:"relationship";s:12:"instructions";s:0:"";s:8:"required";s:1:"0";s:13:"return_format";s:6:"object";s:9:"post_type";a:1:{i:0;s:4:"post";}s:8:"taxonomy";a:1:{i:0;s:3:"all";}s:7:"filters";a:1:{i:0;s:6:"search";}s:15:"result_elements";a:2:{i:0;s:14:"featured_image";i:1;s:9:"post_type";}s:3:"max";s:1:"1";s:17:"conditional_logic";a:3:{s:6:"status";s:1:"0";s:5:"rules";a:1:{i:0;a:2:{s:5:"field";s:4:"null";s:8:"operator";s:2:"==";}}s:8:"allorany";s:3:"all";}s:8:"order_no";i:2;}]]></wp:meta_value>
 		</wp:postmeta>
 		<wp:postmeta>
 			<wp:meta_key>field_58ff4aad74ce6</wp:meta_key>
-			<wp:meta_value><![CDATA[a:13:{s:3:"key";s:19:"field_58ff4aad74ce6";s:5:"label";s:17:"Featured category";s:4:"name";s:17:"featured_category";s:4:"type";s:8:"taxonomy";s:12:"instructions";s:0:"";s:8:"required";s:1:"0";s:8:"taxonomy";s:8:"category";s:10:"field_type";s:8:"checkbox";s:10:"allow_null";s:1:"0";s:15:"load_save_terms";s:1:"0";s:13:"return_format";s:2:"id";s:17:"conditional_logic";a:3:{s:6:"status";s:1:"0";s:5:"rules";a:1:{i:0;a:3:{s:5:"field";s:4:"null";s:8:"operator";s:2:"==";s:5:"value";s:0:"";}}s:8:"allorany";s:3:"all";}s:8:"order_no";i:3;}]]></wp:meta_value>
+			<wp:meta_value><![CDATA[a:13:{s:3:"key";s:19:"field_58ff4aad74ce6";s:5:"label";s:17:"Featured category";s:4:"name";s:17:"featured_category";s:4:"type";s:8:"taxonomy";s:12:"instructions";s:0:"";s:8:"required";s:1:"0";s:8:"taxonomy";s:8:"category";s:10:"field_type";s:6:"select";s:10:"allow_null";s:1:"0";s:15:"load_save_terms";s:1:"0";s:13:"return_format";s:2:"id";s:17:"conditional_logic";a:3:{s:6:"status";s:1:"0";s:5:"rules";a:1:{i:0;a:2:{s:5:"field";s:4:"null";s:8:"operator";s:2:"==";}}s:8:"allorany";s:3:"all";}s:8:"order_no";i:3;}]]></wp:meta_value>
 		</wp:postmeta>
 		<wp:postmeta>
 			<wp:meta_key>position</wp:meta_key>
