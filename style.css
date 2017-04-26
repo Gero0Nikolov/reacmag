@@ -799,10 +799,10 @@ object {
     display: inline-block;
     line-height: 0; }
     .sticky-bar .logo-anchor .logo {
-      width: 3em;
+      width: 5em;
       font-size: 1rem;
       border-radius: 100%;
-      background-color: #000; }
+      background-color: transparent; }
   .sticky-bar .menu-controller {
     width: 2em;
     text-align: right; }
@@ -864,6 +864,7 @@ object {
     .site-content .banner .owl-stage {
       height: 100%; }
     .site-content .banner .owl-item {
+      background-color: #34495e;
       background-size: cover;
       background-position: center;
       position: relative;
@@ -884,6 +885,21 @@ object {
         color: #fff;
         letter-spacing: 2px;
         margin: 0; }
+      .site-content .banner .content .post-anchor {
+        display: block;
+        position: absolute;
+        bottom: 0;
+        right: 0;
+        font-family: "PlayFair Display", serif;
+        font-size: 1.5rem;
+        color: #fff;
+        text-decoration: none;
+        padding: 0.25em 0.5em;
+        margin: 0.5em;
+        border: 1px solid;
+        letter-spacing: 1px; }
+        .site-content .banner .content .post-anchor:hover, .site-content .banner .content .post-anchor:active, .site-content .banner .content .post-anchor:focus {
+          color: #ddd; }
   .site-content .small-boxes {
     display: flex;
     flex-direction: row;
@@ -894,17 +910,11 @@ object {
       display: inline-block;
       width: 30%;
       height: 25em; }
-      .site-content .small-boxes .post-anchor:nth-of-type(1) .box {
-        background-image: url(https://images.unsplash.com/photo-1481846141767-d75efece1613); }
-      .site-content .small-boxes .post-anchor:nth-of-type(2) .box {
-        background-image: url(https://images.unsplash.com/photo-1489902464998-674cc1414013); }
-      .site-content .small-boxes .post-anchor:nth-of-type(3) .box {
-        background-image: url(https://images.unsplash.com/photo-1476638305939-a09cd694566c); }
     .site-content .small-boxes .box {
       display: block;
       width: 100%;
       height: 100%;
-      background-color: #f9f9f9;
+      background-color: #34495e;
       background-size: cover;
       background-position: center;
       position: relative; }
@@ -976,7 +986,7 @@ object {
       width: 30%;
       height: 15em;
       font-size: 2rem;
-      background-color: #f9f9f9;
+      background-color: #34495e;
       background-size: cover;
       background-position: center; }
   .site-content .featured-category {
@@ -1005,14 +1015,6 @@ object {
         -moz-transition: all 0.15s ease-in-out;
         -o-transition: all 0.15s ease-in-out;
         transition: all 0.15s ease-in-out; }
-        .site-content .featured-category .tiny-boxes .post-anchor:nth-of-type(1) .box {
-          background-image: url(https://images.unsplash.com/photo-1481846141767-d75efece1613); }
-        .site-content .featured-category .tiny-boxes .post-anchor:nth-of-type(2) .box {
-          background-image: url(https://images.unsplash.com/photo-1489902464998-674cc1414013); }
-        .site-content .featured-category .tiny-boxes .post-anchor:nth-of-type(3) .box {
-          background-image: url(https://images.unsplash.com/photo-1476638305939-a09cd694566c); }
-        .site-content .featured-category .tiny-boxes .post-anchor:nth-of-type(4) .box {
-          background-image: url(https://images.unsplash.com/photo-1488751045188-3c55bbf9a3fa); }
         .site-content .featured-category .tiny-boxes .post-anchor:hover, .site-content .featured-category .tiny-boxes .post-anchor:active, .site-content .featured-category .tiny-boxes .post-anchor:focus {
           transform: translateY(-1em); }
       .site-content .featured-category .tiny-boxes .box {
@@ -1021,7 +1023,7 @@ object {
         height: 345px;
         position: relative;
         text-align: left;
-        background-color: #f9f9f9;
+        background-color: #34495e;
         background-size: cover;
         background-position: center; }
         .site-content .featured-category .tiny-boxes .box .box-header {
