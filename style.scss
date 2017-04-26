@@ -1625,7 +1625,11 @@ $button_font : 'PlayFair Display', serif;
 		.dotter { display: none; }
 	}
 
-	.global-menu {
-		.close-button { top: 10%; right: 10%; }
+	.global-menu,
+	.global-search {
+		.close-button {
+			top: 10%;
+			right: calc(10% - 1.5em);
+		}
 	}
 }

@@ -1339,8 +1339,9 @@ object {
   display: block; }
 .mobile .footer-menu .dotter {
   display: none; }
-.mobile .global-menu .close-button {
+.mobile .global-menu .close-button,
+.mobile .global-search .close-button {
   top: 10%;
-  right: 10%; }
+  right: calc(10% - 1.5em); }
 
 /*# sourceMappingURL=style.css.map */
