@@ -151,3 +151,38 @@ require get_template_directory() . '/inc/jetpack.php';
 function get_view( $view_name ) {
 	return get_template_directory() . "/views/". $view_name;
 }
+
+function get_related_posts( $this_post, $categories_, $echo = false ) {
+	$posts_ = array();
+	foreach ( $categories_ as $category_id ) {
+		$args = array(
+			"posts_per_page" => 4,
+			"post_type" => "post",
+			"post_status" => "publish",
+			"orderby" => "ID",
+			"order" => "DESC",
+			"category" => $category_id
+		);
+		$posts_ = array_merge( $posts_, get_posts( $args ) );
+	}
+
+	if ( !$echo ) { return $posts_; }
+	else {
+		echo "<div class='owl-carousel owl-theme'>";
+		foreach ( $posts_ as $post_ ) {
+			if ( $post_->ID != $this_post ) {
+				$post_url = get_permalink( $post_->ID );
+				$post_featured_image = get_the_post_thumbnail_url( $post_->ID );
+
+				echo "
+				<div class='related-item' style='background-image: url($post_featured_image);'>
+					<a href='$post_url' class='post-anchor'>
+						<h1 class='post-title'>$post_->post_title</h1>
+					</a>
+				</div>
+				";
+			}
+		}
+		echo "</div>";
+	}
+}

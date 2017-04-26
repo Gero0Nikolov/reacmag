@@ -63,17 +63,38 @@ jQuery( document ).ready(function(){
         }
     } );
 
-    jQuery( '.owl-carousel' ).owlCarousel({
-	    center: true,
-	    items: 1,
-	    loop: true,
-	    margin: 0,
-        dots: false,
-        autoplay: true,
-	    responsive:{
-	        600:{
-	            items:1
-	        }
-	    }
-	});
+    if ( jQuery( "body" ).hasClass( "single" ) ) {
+        jQuery( '.owl-carousel' ).owlCarousel({
+    	    center: false,
+    	    items: 4,
+    	    loop: false,
+    	    margin: 10,
+            dots: true,
+            nav: false,
+            autoplay: false,
+    	    responsive:{
+                0:{
+                    items:1
+                },
+    	        600:{
+    	            items:4
+    	        }
+    	    }
+    	});
+    } else {
+        jQuery( '.owl-carousel' ).owlCarousel({
+    	    center: true,
+    	    items: 1,
+    	    loop: true,
+    	    margin: 0,
+            dots: false,
+            nav: false,
+            autoplay: true,
+    	    responsive:{
+    	        600:{
+    	            items:1
+    	        }
+    	    }
+    	});
+    }
 });

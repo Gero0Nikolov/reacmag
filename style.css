@@ -1205,6 +1205,256 @@ object {
     .global-search .search-form .search-submit {
       display: none; }
 
+.post-area .featured-image {
+  display: block;
+  position: relative;
+  width: 100%;
+  height: 10em;
+  font-size: 3rem;
+  background-size: cover;
+  background-position: center;
+  background-color: #34495e; }
+
+.entry-title {
+  display: block;
+  font-family: "PlayFair Display", serif;
+  font-size: 3rem;
+  font-weight: normal;
+  color: #333;
+  letter-spacing: 1px;
+  margin: 0.25em 0; }
+
+.entry-meta {
+  display: block;
+  font-family: "PlayFair Display", serif;
+  font-size: 1rem;
+  font-weight: normal;
+  color: #777;
+  letter-spacing: 1px; }
+  .entry-meta a {
+    color: #3498db;
+    text-decoration: none; }
+    .entry-meta a:hover, .entry-meta a:active, .entry-meta a:focus {
+      color: #2980b9; }
+
+.entry-content {
+  display: block;
+  font-family: "Cabin", sans-serif;
+  font-size: 1.15rem;
+  font-weight: normal;
+  color: #333;
+  letter-spacing: 1px;
+  line-height: 150%; }
+
+.entry-footer .cat-links,
+.entry-footer .tags-links {
+  display: block;
+  font-family: "Cabin", sans-serif;
+  font-size: 1rem;
+  font-weight: normal;
+  color: #333; }
+  .entry-footer .cat-links a,
+  .entry-footer .tags-links a {
+    display: inline-block;
+    vertical-align: baseline;
+    font-family: "PlayFair Display", serif;
+    font-size: 1.25rem;
+    font-weight: normal;
+    color: #3498db;
+    letter-spacing: 1px;
+    text-decoration: none;
+    text-transform: lowercase; }
+    .entry-footer .cat-links a:hover, .entry-footer .cat-links a:active, .entry-footer .cat-links a:focus,
+    .entry-footer .tags-links a:hover,
+    .entry-footer .tags-links a:active,
+    .entry-footer .tags-links a:focus {
+      color: #2980b9; }
+
+.comments-area {
+  display: block;
+  border-top: 1px solid #333;
+  margin-bottom: 3em; }
+  .comments-area .comments-title {
+    display: block;
+    font-family: "Cabin", sans-serif;
+    font-size: 2rem;
+    font-weight: normal;
+    color: #333;
+    margin: 1em 0 0.25em; }
+  .comments-area .comment-list {
+    margin: 0;
+    padding: 0; }
+    .comments-area .comment-list .comment {
+      list-style: none;
+      margin-top: 2em; }
+      .comments-area .comment-list .comment .comment-meta .avatar {
+        display: inline-block;
+        vertical-align: middle;
+        border-radius: 100%; }
+      .comments-area .comment-list .comment .comment-meta .fn {
+        display: inline-block;
+        font-family: "PlayFair Display", serif;
+        font-size: 1.25rem;
+        font-weight: normal; }
+        .comments-area .comment-list .comment .comment-meta .fn a {
+          color: #3498db;
+          text-decoration: none; }
+          .comments-area .comment-list .comment .comment-meta .fn a:hover, .comments-area .comment-list .comment .comment-meta .fn a:active, .comments-area .comment-list .comment .comment-meta .fn a:focus {
+            color: #2980b9; }
+      .comments-area .comment-list .comment .comment-meta .says {
+        font-family: "Cabin", sans-serif;
+        font-size: 1rem;
+        font-weight: normal;
+        color: #333; }
+      .comments-area .comment-list .comment .comment-meta .comment-metadata {
+        display: block;
+        margin: 0.25em 0;
+        font-family: "PlayFair Display", serif;
+        font-size: 1rem;
+        font-weight: normal;
+        letter-spacing: 1px; }
+        .comments-area .comment-list .comment .comment-meta .comment-metadata a {
+          color: #777;
+          text-decoration: none; }
+          .comments-area .comment-list .comment .comment-meta .comment-metadata a:hover, .comments-area .comment-list .comment .comment-meta .comment-metadata a:active, .comments-area .comment-list .comment .comment-meta .comment-metadata a:focus {
+            text-decoration: underline; }
+      .comments-area .comment-list .comment .comment-content {
+        display: block;
+        font-family: "Cabin", sans-serif;
+        font-size: 1rem;
+        font-weight: normal;
+        color: #333;
+        letter-spacing: 1px; }
+        .comments-area .comment-list .comment .comment-content a {
+          color: #3498db;
+          text-decoration: none; }
+          .comments-area .comment-list .comment .comment-content a:hover, .comments-area .comment-list .comment .comment-content a:active, .comments-area .comment-list .comment .comment-content a:focus {
+            color: #2980b9; }
+      .comments-area .comment-list .comment .comment-reply-link {
+        display: inline-block;
+        font-family: "PlayFair Display", serif;
+        font-size: 1.15rem;
+        color: #333;
+        text-decoration: none;
+        border: 1px solid;
+        padding: 0.5em 0.5em;
+        letter-spacing: 1px;
+        line-height: 100%;
+        outline: 0; }
+        .comments-area .comment-list .comment .comment-reply-link:visited {
+          color: #333; }
+        .comments-area .comment-list .comment .comment-reply-link:hover, .comments-area .comment-list .comment .comment-reply-link:active, .comments-area .comment-list .comment .comment-reply-link:focus {
+          color: #3498db; }
+  .comments-area .comment-reply-title {
+    font-family: "Cabin", sans-serif;
+    font-size: 1.5rem;
+    font-weight: normal;
+    color: #333; }
+    .comments-area .comment-reply-title #cancel-comment-reply-link {
+      display: inline-block;
+      color: #e74c3c;
+      font-size: 1rem;
+      font-weight: normal;
+      text-decoration: none; }
+      .comments-area .comment-reply-title #cancel-comment-reply-link:hover, .comments-area .comment-reply-title #cancel-comment-reply-link:active, .comments-area .comment-reply-title #cancel-comment-reply-link:focus {
+        color: #c0392b; }
+  .comments-area .logged-in-as {
+    display: block;
+    margin: 0; }
+    .comments-area .logged-in-as a {
+      font-family: "Cabin", sans-serif;
+      font-size: 1rem;
+      font-weight: normal;
+      text-decoration: none;
+      color: #3498db; }
+      .comments-area .logged-in-as a:hover, .comments-area .logged-in-as a:active, .comments-area .logged-in-as a:focus {
+        color: #2980b9; }
+  .comments-area .comment-form-comment label {
+    display: none; }
+  .comments-area .comment-form-comment textarea {
+    display: block;
+    font-family: "Cabin", sans-serif;
+    font-size: 1rem;
+    font-weight: normal;
+    color: #333;
+    width: 100%;
+    height: 250px;
+    border: 1px solid #333;
+    border-radius: 0;
+    padding: 0.5em;
+    letter-spacing: 1px;
+    resize: vertical;
+    outline: 0; }
+    .comments-area .comment-form-comment textarea:focus {
+      border-color: #3498db; }
+  .comments-area .form-submit {
+    display: block;
+    margin: 0; }
+    .comments-area .form-submit input[type="submit"] {
+      display: inline-block;
+      font-family: "PlayFair Display", serif;
+      font-size: 1.15rem;
+      color: #333;
+      text-decoration: none;
+      border: 1px solid;
+      padding: 0.5em 0.5em;
+      letter-spacing: 1px;
+      line-height: 100%;
+      outline: 0;
+      background: none;
+      box-shadow: none;
+      border-radius: 0; }
+      .comments-area .form-submit input[type="submit"]:visited {
+        color: #333; }
+      .comments-area .form-submit input[type="submit"]:hover, .comments-area .form-submit input[type="submit"]:active, .comments-area .form-submit input[type="submit"]:focus {
+        color: #3498db; }
+
+.owl-carousel .related-item {
+  display: block;
+  width: 100%;
+  height: 15em;
+  position: relative;
+  background-color: #34495e;
+  background-size: cover;
+  background-position: center;
+  webkit-transition: all 0.15s ease-in-out;
+  -moz-transition: all 0.15s ease-in-out;
+  -o-transition: all 0.15s ease-in-out;
+  transition: all 0.15s ease-in-out; }
+  .owl-carousel .related-item:hover, .owl-carousel .related-item:active, .owl-carousel .related-item:focus {
+    transform: scale(0.9); }
+  .owl-carousel .related-item .post-anchor {
+    display: block;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    text-decoration: none;
+    color: #fff; }
+    .owl-carousel .related-item .post-anchor .post-title {
+      display: block;
+      position: absolute;
+      bottom: 0;
+      margin: 0;
+      padding: 0.5em;
+      font-family: "PlayFair Display", serif;
+      font-size: 1.75rem;
+      font-weight: normal;
+      letter-spacing: 1px;
+      width: 100%; }
+
+.single .owl-carousel {
+  margin-bottom: 1.5em; }
+
+.owl-dot.active span {
+  background: #34495e !important; }
+
+.owl-dot:hover span,
+.owl-dot:active span,
+.owl-dot:focus span {
+  background: #2c3e50 !important; }
+
 .button {
   font-family: "PlayFair Display", serif;
   font-size: 1.25rem;
