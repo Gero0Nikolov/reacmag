@@ -34,8 +34,8 @@
 				<button id="search-controller" class="button simple-button">Search</button>
 			</div>
 			<div class="middle">
-				<a href="#!" class="logo-anchor">
-					<img src="https://cdn1.iconfinder.com/data/icons/navigation-elements/512/round-empty-circle-function-128.png" class="logo" />
+				<a href="<?php echo get_site_url(); ?>" class="logo-anchor">
+					<img src="<?php echo get_site_icon_url(); ?>" class="logo" />
 				</a>
 			</div>
 			<div class="right">

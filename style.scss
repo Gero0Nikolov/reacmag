@@ -959,6 +959,7 @@ $button_font : 'PlayFair Display', serif;
 			width: 3em;
 		    font-size: 1rem;
 		    border-radius: 100%;
+			background-color: #000;
 		}
 	}
 
@@ -1006,7 +1007,7 @@ $button_font : 'PlayFair Display', serif;
 		display: block;
 	    width: 100%;
 	    position: relative;
-	    height: 15em;
+	    height: 10em;
 	    background: #fff;
 	    font-size: 3rem;
 		border: none;
@@ -1073,8 +1074,8 @@ $button_font : 'PlayFair Display', serif;
 
 		.post-anchor {
 			display: inline-block;
-		    width: 30%;
-			height: 450px;
+			width: 30%;
+			height: 25em;
 
 			&:nth-of-type(1) {
 				.box { background-image: url(https://images.unsplash.com/photo-1481846141767-d75efece1613); }
@@ -1092,7 +1093,7 @@ $button_font : 'PlayFair Display', serif;
 		.box {
 			display: block;
 		    width: 100%;
-			height: 450px;
+			height: 100%;
 		    background-color: #f9f9f9;
 			background-size: cover;
 			background-position: center;
@@ -1186,8 +1187,8 @@ $button_font : 'PlayFair Display', serif;
 		.featured-image {
 			display: inline-block;
 		    width: 30%;
-		    height: 5em;
-		    font-size: 5rem;
+		    height: 15em;
+		    font-size: 2rem;
 			background-color: #f9f9f9;
 		    background-size: cover;
 		    background-position: center;
@@ -1220,12 +1221,12 @@ $button_font : 'PlayFair Display', serif;
 			.post-anchor {
 				display: inline-block;
 				width: 22.5%;
-				height: 345px;
+				height: 20em;
 
-				webkit-transition: all 0.25s ease-in-out;
-				-moz-transition: all 0.25s ease-in-out;
-				-o-transition: all 0.25s ease-in-out;
-				transition: all 0.25s ease-in-out;
+				webkit-transition: all 0.15s ease-in-out;
+				-moz-transition: all 0.15s ease-in-out;
+				-o-transition: all 0.15s ease-in-out;
+				transition: all 0.15s ease-in-out;
 
 				&:nth-of-type(1) {
 					.box { background-image: url(https://images.unsplash.com/photo-1481846141767-d75efece1613); }
