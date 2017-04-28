@@ -7,7 +7,10 @@
  * @package Reactive_Magazine
  */
 
-get_header(); ?>
+get_header();
+
+$featured_posts = get_field( "featured_posts", 655 ); // Featured posts from Search page controller
+?>
 
 	<section id="primary" class="content-area">
 		<main id="main" class="site-main" role="main">
@@ -32,17 +35,38 @@ get_header(); ?>
 
 			endwhile;
 
-			the_posts_navigation();
-
 		else :
 
 			get_template_part( 'template-parts/content', 'none' );
 
+			?>
+
+			<h1 class="page-title">Read also:</h1>
+			<div id="featured-posts" class="featured-posts">
+
+			<?php
+			foreach ( $featured_posts as $post_ ) {
+				$post_url = get_permalink( $post_->ID );
+				$post_featured_image = get_the_post_thumbnail_url( $post_->ID, "full" );
+				?>
+
+				<a href="" class="post-anchor">
+					<div id="post-<?php echo $post_->ID; ?>" class="post-container" style="background-image: url(<?php echo $post_featured_image; ?>);">
+						<h1 class="post-title"><?php echo $post_->post_title; ?></h1>
+					</div>
+				</a>
+
+				<?php
+			}
+			?>
+
+			</div>
+
+			<?php
 		endif; ?>
 
 		</main><!-- #main -->
 	</section><!-- #primary -->
 
 <?php
-get_sidebar();
 get_footer();

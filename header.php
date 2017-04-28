@@ -66,4 +66,4 @@
 		<?php get_search_form( true ); ?>
 	</div>
 
-	<div id="content" class="site-content">
+	<div id="content" class="site-content animated fadeIn">

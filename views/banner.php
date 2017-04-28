@@ -15,9 +15,9 @@ $slider_elements = get_field( "slider_posts", $page_id );
             $post_featured_image = get_the_post_thumbnail_url( $element_->ID, "full" );
         ?>
         <div class="owl-item" style="background-image: url(<?php echo $post_featured_image; ?>);">
-            <div class="content">
+			<a href="<?php echo $post_url; ?>" class="post-anchor">Read it!</a>
+			<div class="content">
                 <h1 class="header"><?php echo $post_title; ?></h1>
-                <a href="<?php echo $post_url; ?>" class="post-anchor">Read it!</a>
             </div>
         </div>
         <?php } ?>

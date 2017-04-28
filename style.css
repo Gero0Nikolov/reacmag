@@ -831,7 +831,7 @@ object {
   display: block;
   position: relative;
   width: 100%;
-  margin-top: 7.5em;
+  margin-top: 9.5em;
   padding: 0 10%;
   overflow-x: hidden;
   overflow-y: hidden; }
@@ -870,6 +870,21 @@ object {
       position: relative;
       width: 100%;
       height: 100%; }
+    .site-content .banner .post-anchor {
+      display: block;
+      position: absolute;
+      top: 0;
+      right: 0;
+      font-family: "PlayFair Display", serif;
+      font-size: 1.5rem;
+      color: #fff;
+      text-decoration: none;
+      padding: 0.25em 0.5em;
+      margin: 0.5em;
+      border: 1px solid;
+      letter-spacing: 1px; }
+      .site-content .banner .post-anchor:hover, .site-content .banner .post-anchor:active, .site-content .banner .post-anchor:focus {
+        color: #ddd; }
     .site-content .banner .content {
       display: block;
       position: absolute;
@@ -885,21 +900,6 @@ object {
         color: #fff;
         letter-spacing: 2px;
         margin: 0; }
-      .site-content .banner .content .post-anchor {
-        display: block;
-        position: absolute;
-        bottom: 0;
-        right: 0;
-        font-family: "PlayFair Display", serif;
-        font-size: 1.5rem;
-        color: #fff;
-        text-decoration: none;
-        padding: 0.25em 0.5em;
-        margin: 0.5em;
-        border: 1px solid;
-        letter-spacing: 1px; }
-        .site-content .banner .content .post-anchor:hover, .site-content .banner .content .post-anchor:active, .site-content .banner .content .post-anchor:focus {
-          color: #ddd; }
   .site-content .small-boxes {
     display: flex;
     flex-direction: row;
@@ -1245,6 +1245,11 @@ object {
   color: #333;
   letter-spacing: 1px;
   line-height: 150%; }
+  .entry-content a {
+    color: #3498db;
+    text-decoration: none; }
+    .entry-content a:hover, .entry-content a:active, .entry-content a:focus {
+      color: #2980b9; }
 
 .entry-footer .cat-links,
 .entry-footer .tags-links {
@@ -1284,6 +1289,8 @@ object {
   .comments-area .comment-list {
     margin: 0;
     padding: 0; }
+    .comments-area .comment-list .pingback {
+      display: none !important; }
     .comments-area .comment-list .comment {
       list-style: none;
       margin-top: 2em; }
@@ -1455,6 +1462,114 @@ object {
 .owl-dot:focus span {
   background: #2c3e50 !important; }
 
+.search .page-title {
+  font-family: "PlayFair Display", serif;
+  font-size: 3rem;
+  font-weight: normal;
+  color: #333;
+  letter-spacing: 1px;
+  border-bottom: 1px solid #333;
+  padding: 0 0 0.5em;
+  margin: 0 0 0.5em; }
+.search .page-content {
+  display: block;
+  font-family: "Cabin", sans-serif;
+  font-size: 1.25rem;
+  font-weight: normal;
+  color: #333;
+  letter-spacing: 1px;
+  line-height: 150%; }
+.search .featured-posts {
+  display: block;
+  text-align: left;
+  padding: 0 1em;
+  margin-bottom: 3em; }
+  .search .featured-posts .post-anchor {
+    display: inline-block;
+    width: 30%;
+    vertical-align: top;
+    height: 20em;
+    margin: 1.25%;
+    text-decoration: none;
+    position: relative;
+    outline: 0;
+    webkit-transition: all 0.15s ease-in-out;
+    -moz-transition: all 0.15s ease-in-out;
+    -o-transition: all 0.15s ease-in-out;
+    transition: all 0.15s ease-in-out; }
+    .search .featured-posts .post-anchor:hover, .search .featured-posts .post-anchor:active, .search .featured-posts .post-anchor:focus {
+      transform: translateY(-1em); }
+    .search .featured-posts .post-anchor .post-container {
+      display: block;
+      width: 100%;
+      height: 100%;
+      background: #34495e;
+      background-size: cover;
+      background-position: center;
+      position: relative; }
+      .search .featured-posts .post-anchor .post-container .post-title {
+        display: block;
+        font-family: "PlayFair Display", serif;
+        font-size: 2rem;
+        font-weight: normal;
+        color: #fff;
+        letter-spacing: 1px;
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        text-align: left;
+        margin: 0;
+        padding: 0.5em; }
+
+.archive .page-title {
+  font-family: "PLayFair Display", serif;
+  font-size: 3rem;
+  font-weight: normal;
+  color: #333;
+  letter-spacing: 1px;
+  border-bottom: 1px solid #333;
+  padding: 0 0 0.5em;
+  margin: 0 0 0.5em; }
+.archive .posts-list {
+  display: block;
+  text-align: left;
+  margin-bottom: 3em; }
+  .archive .posts-list .post-anchor {
+    display: inline-block;
+    width: 30%;
+    height: 20em;
+    vertical-align: top;
+    margin: 1.5%;
+    position: relative;
+    outline: 0;
+    webkit-transition: all 0.15s ease-in-out;
+    -moz-transition: all 0.15s ease-in-out;
+    -o-transition: all 0.15s ease-in-out;
+    transition: all 0.15s ease-in-out; }
+    .archive .posts-list .post-anchor:hover, .archive .posts-list .post-anchor:active, .archive .posts-list .post-anchor:focus {
+      transform: translateY(-1em); }
+    .archive .posts-list .post-anchor .post-container {
+      display: block;
+      width: 100%;
+      height: 100%;
+      background-color: #34495e;
+      background-size: cover;
+      background-position: center;
+      position: relative; }
+      .archive .posts-list .post-anchor .post-container .post-title {
+        display: block;
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        font-family: "PlayFair Display", serif;
+        font-size: 2rem;
+        font-weight: normal;
+        color: #fff;
+        letter-spacing: 1px;
+        margin: 0;
+        padding: 0.5em; }
+
 .button {
   font-family: "PlayFair Display", serif;
   font-size: 1.25rem;
@@ -1593,5 +1708,11 @@ object {
 .mobile .global-search .close-button {
   top: 10%;
   right: calc(10% - 1.5em); }
+.mobile.archive .posts-list .post-anchor {
+  margin: 1.5% 0; }
+.mobile.search .featured-posts {
+  padding: 0; }
+  .mobile.search .featured-posts .post-anchor {
+    margin: 1.25% 0; }
 
 /*# sourceMappingURL=style.css.map */

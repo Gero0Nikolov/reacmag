@@ -999,7 +999,7 @@ $button_font : 'PlayFair Display', serif;
 	display: block;
 	position: relative;
 	width: 100%;
-	margin-top: 7.5em;
+	margin-top: 9.5em;
 	padding: 0 10%;
 	overflow-x: hidden;
 	overflow-y: hidden;
@@ -1046,6 +1046,25 @@ $button_font : 'PlayFair Display', serif;
 			height: 100%;
 		}
 
+		.post-anchor {
+			display: block;
+			position: absolute;
+			top: 0;
+			right: 0;
+			font-family: "PlayFair Display", serif;
+			font-size: 1.5rem;
+			color: #fff;
+			text-decoration: none;
+			padding: 0.25em 0.5em;
+			margin: 0.5em;
+			border: 1px solid;
+			letter-spacing: 1px;
+
+			&:hover,
+			&:active,
+			&:focus { color: #ddd; }
+		}
+
 		.content {
 			display: block;
 			position: absolute;
@@ -1062,25 +1081,6 @@ $button_font : 'PlayFair Display', serif;
 			    color: #fff;
 			    letter-spacing: 2px;
 			    margin: 0;
-			}
-
-			.post-anchor {
-				display: block;
-				position: absolute;
-				bottom: 0;
-				right: 0;
-				font-family: "PlayFair Display", serif;
-				font-size: 1.5rem;
-				color: #fff;
-				text-decoration: none;
-				padding: 0.25em 0.5em;
-				margin: 0.5em;
-				border: 1px solid;
-				letter-spacing: 1px;
-
-				&:hover,
-				&:active,
-				&:focus { color: #ddd; }
 			}
 		}
 	}
@@ -1506,6 +1506,15 @@ $button_font : 'PlayFair Display', serif;
 	color: #333;
 	letter-spacing: 1px;
 	line-height: 150%;
+
+	a {
+		color: #3498db;
+		text-decoration: none;
+
+		&:hover,
+		&:active,
+		&:focus { color: #2980b9; }
+	}
 }
 
 .entry-footer {
@@ -1557,6 +1566,8 @@ $button_font : 'PlayFair Display', serif;
 	.comment-list {
 		margin: 0;
 		padding: 0;
+
+		.pingback { display: none !important; }
 
 		.comment {
 			list-style: none;
@@ -1794,6 +1805,148 @@ $button_font : 'PlayFair Display', serif;
 .owl-dot:active,
 .owl-dot:focus { span { background: #2c3e50 !important; } }
 
+.search {
+	.page-title {
+		font-family: $title_font;
+	    font-size: 3rem;
+	    font-weight: normal;
+	    color: #333;
+	    letter-spacing: 1px;
+	    border-bottom: 1px solid #333;
+	    padding: 0 0 0.5em;
+	    margin: 0 0 0.5em;
+	}
+
+	.page-content {
+		display: block;
+		font-family: $content_font;
+		font-size: 1.25rem;
+		font-weight: normal;
+		color: #333;
+		letter-spacing: 1px;
+		line-height: 150%;
+	}
+
+	.featured-posts {
+		display: block;
+		text-align: left;
+		padding: 0 1em;
+		margin-bottom: 3em;
+
+		.post-anchor {
+			display: inline-block;
+		    width: 30%;
+		    vertical-align: top;
+		    height: 20em;
+		    margin: 1.25%;
+		    text-decoration: none;
+			position: relative;
+			outline: 0;
+
+			webkit-transition: all 0.15s ease-in-out;
+			-moz-transition: all 0.15s ease-in-out;
+			-o-transition: all 0.15s ease-in-out;
+			transition: all 0.15s ease-in-out;
+
+			&:hover,
+			&:active,
+			&:focus {
+				transform: translateY(-1em);
+			}
+
+			.post-container {
+				display: block;
+				width: 100%;
+				height: 100%;
+				background: #34495e;
+				background-size: cover;
+				background-position: center;
+				position: relative;
+
+				.post-title {
+					display: block;
+				    font-family: $title_font;
+				    font-size: 2rem;
+				    font-weight: normal;
+				    color: #fff;
+				    letter-spacing: 1px;
+				    position: absolute;
+				    bottom: 0;
+				    left: 0;
+				    width: 100%;
+				    text-align: left;
+					margin: 0;
+					padding: 0.5em;
+				}
+			}
+		}
+	}
+}
+
+.archive {
+	.page-title {
+		font-family: "PLayFair Display", serif;
+	    font-size: 3rem;
+	    font-weight: normal;
+	    color: #333;
+	    letter-spacing: 1px;
+	    border-bottom: 1px solid #333;
+	    padding: 0 0 0.5em;
+	    margin: 0 0 0.5em;
+	}
+
+	.posts-list {
+		display: block;
+		text-align: left;
+		margin-bottom: 3em;
+
+		.post-anchor {
+			display: inline-block;
+		    width: 30%;
+		    height: 20em;
+			vertical-align: top;
+			margin: 1.5%;
+			position: relative;
+			outline: 0;
+
+			webkit-transition: all 0.15s ease-in-out;
+			-moz-transition: all 0.15s ease-in-out;
+			-o-transition: all 0.15s ease-in-out;
+			transition: all 0.15s ease-in-out;
+
+			&:hover,
+			&:active,
+			&:focus {
+				transform: translateY(-1em);
+			}
+
+			.post-container {
+				display: block;
+				width: 100%;
+				height: 100%;
+				background-color: #34495e;
+				background-size: cover;
+				background-position: center;
+				position: relative;
+
+				.post-title {
+					display: block;
+					position: absolute;
+					bottom: 0;
+					left: 0;
+					font-family: $title_font;
+					font-size: 2rem;
+					font-weight: normal;
+					color: #fff;
+					letter-spacing: 1px;
+					margin: 0;
+					padding: 0.5em;
+				}
+			}
+		}
+	}
+}
+
 // Buttons
 .button {
 	font-family: $button_font;
@@ -1967,6 +2120,22 @@ $button_font : 'PlayFair Display', serif;
 		.close-button {
 			top: 10%;
 			right: calc(10% - 1.5em);
+		}
+	}
+
+	&.archive {
+		.posts-list {
+			.post-anchor {
+				margin: 1.5% 0;
+			}
+		}
+	}
+
+	&.search {
+		.featured-posts {
+			padding: 0;
+
+			.post-anchor { margin: 1.25% 0; }
 		}
 	}
 }

@@ -161,6 +161,7 @@ function get_related_posts( $this_post, $categories_, $echo = false ) {
 			"post_status" => "publish",
 			"orderby" => "ID",
 			"order" => "DESC",
+			"post__not_in" => array( $this_post ),
 			"category" => $category_id
 		);
 		$posts_ = array_merge( $posts_, get_posts( $args ) );
@@ -168,21 +169,23 @@ function get_related_posts( $this_post, $categories_, $echo = false ) {
 
 	if ( !$echo ) { return $posts_; }
 	else {
-		echo "<div class='owl-carousel owl-theme'>";
-		foreach ( $posts_ as $post_ ) {
-			if ( $post_->ID != $this_post ) {
-				$post_url = get_permalink( $post_->ID );
-				$post_featured_image = get_the_post_thumbnail_url( $post_->ID );
+		if ( !empty( $posts_ ) ) {
+			echo "<div class='owl-carousel owl-theme'>";
+			foreach ( $posts_ as $post_ ) {
+				if ( $post_->ID != $this_post ) {
+					$post_url = get_permalink( $post_->ID );
+					$post_featured_image = get_the_post_thumbnail_url( $post_->ID );
 
-				echo "
-				<div class='related-item' style='background-image: url($post_featured_image);'>
-					<a href='$post_url' class='post-anchor'>
-						<h1 class='post-title'>$post_->post_title</h1>
-					</a>
-				</div>
-				";
+					echo "
+					<div class='related-item' style='background-image: url($post_featured_image);'>
+						<a href='$post_url' class='post-anchor'>
+							<h1 class='post-title'>$post_->post_title</h1>
+						</a>
+					</div>
+					";
+				}
 			}
+			echo "</div>";
 		}
-		echo "</div>";
 	}
 }

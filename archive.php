@@ -22,21 +22,27 @@ get_header(); ?>
 				?>
 			</header><!-- .page-header -->
 
+			<div id="posts-list" class="posts-list">
 			<?php
 			/* Start the Loop */
 			while ( have_posts() ) : the_post();
 
-				/*
-				 * Include the Post-Format-specific template for the content.
-				 * If you want to override this in a child theme, then include a file
-				 * called content-___.php (where ___ is the Post Format name) and that will be used instead.
-				 */
-				get_template_part( 'template-parts/content', get_post_format() );
+				$post_id = get_the_ID();
+				$post_featured_image = get_the_post_thumbnail_url( $post_id );
+				?>
 
+				<a href="<?php echo the_permalink(); ?>" class="post-anchor">
+					<div id="post-<?php echo $post_id; ?>" class="animated fadeInUp post-container" style="background-image: url( <?php echo $post_featured_image; ?> );">
+						<h1 class="post-title"><?php echo the_title(); ?></h1>
+					</div>
+				</a>
+
+				<?php
 			endwhile;
+			?>
+			</div>
 
-			the_posts_navigation();
-
+			<?php
 		else :
 
 			get_template_part( 'template-parts/content', 'none' );
@@ -47,5 +53,4 @@ get_header(); ?>
 	</div><!-- #primary -->
 
 <?php
-get_sidebar();
 get_footer();
