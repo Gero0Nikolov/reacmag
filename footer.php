@@ -15,15 +15,15 @@
 
 	<footer id="colophon" class="site-footer" role="contentinfo">
 		<div class="footer-menu">
-			<a href="#!" class="footer-link">About us</a>
+			<a href="<?php echo get_site_url(); ?>/about-us" class="footer-link">About us</a>
 			<span class="dotter">&bull;</span>
-			<a href="#!" class="footer-link">Contact us</a>
+			<a href="<?php echo get_site_url(); ?>/contact-us" class="footer-link">Contact us</a>
 			<span class="dotter">&bull;</span>
-			<a href="#!" class="footer-link">Promote</a>
+			<a href="<?php echo get_site_url(); ?>/promote" class="footer-link">Promote</a>
 			<span class="dotter">&bull;</span>
-			<a href="#!" class="social-link fa fa-instagram"></a>
+			<a href="https://www.instagram.com/reacmag/" target="_blank" class="social-link fa fa-instagram"></a>
 			<span class="dotter">&bull;</span>
-			<a href="#!" class="social-link fa fa-facebook"></a>
+			<a href="https://www.facebook.com/reacmag/" target="_blank" class="social-link fa fa-facebook"></a>
 		</div>
 	</footer><!-- #colophon -->
 </div><!-- #page -->

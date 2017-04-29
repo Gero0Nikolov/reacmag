@@ -901,6 +901,9 @@ $title_font : 'PlayFair Display', serif;
 $content_font : 'Cabin', sans-serif;
 $button_font : 'PlayFair Display', serif;
 
+body { background: #000; }
+.site { background: #fff; }
+
 .sticky-bar {
 	display: flex;
     flex-direction: row;
@@ -1047,8 +1050,9 @@ $button_font : 'PlayFair Display', serif;
 		}
 
 		.post-anchor {
-			display: block;
+			display: inline-block;
 			position: absolute;
+			width: initial !important;
 			top: 0;
 			right: 0;
 			font-family: "PlayFair Display", serif;
@@ -1064,6 +1068,8 @@ $button_font : 'PlayFair Display', serif;
 			&:active,
 			&:focus { color: #ddd; }
 		}
+
+		.inline-post-anchor { text-decoration: none; }
 
 		.content {
 			display: block;
@@ -1247,7 +1253,7 @@ $button_font : 'PlayFair Display', serif;
 			.box {
 				display: block;
 				width: 100%;
-				height: 345px;
+				height: 100%;
 				position: relative;
 				text-align: left;
 				background-color: #34495e;
@@ -1515,6 +1521,12 @@ $button_font : 'PlayFair Display', serif;
 		&:active,
 		&:focus { color: #2980b9; }
 	}
+
+	iframe {
+		display: block;
+		width: 100%;
+		height: 20em;
+	}
 }
 
 .entry-footer {
@@ -1561,6 +1573,27 @@ $button_font : 'PlayFair Display', serif;
 		font-weight: normal;
 		color: #333;
 		margin: 1em 0 0.25em;
+	}
+
+	.comment-form {
+		font-family: $content_font;
+		font-size: 1rem;
+		font-weight: normal;
+		color: #333;
+
+		input[type="text"],
+		input[type="email"],
+		input[type="url"] {
+			display: block;
+			width: 100%;
+			border: 1px solid #333;
+			border-radius: 0;
+			padding: 0.5em;
+			outline: 0;
+			box-shadow: none;
+
+			&:focus { border-color: #3498db; }
+		}
 	}
 
 	.comment-list {
@@ -1716,6 +1749,8 @@ $button_font : 'PlayFair Display', serif;
 			letter-spacing: 1px;
 			resize: vertical;
 			outline: 0;
+			text-shadow: none;
+			box-shadow: none;
 
 			&:focus { border-color: #3498db; }
 		}
@@ -1780,6 +1815,8 @@ $button_font : 'PlayFair Display', serif;
 			text-decoration: none;
 			color: #fff;
 
+			&:before { display: none !important; }
+
 			.post-title {
 				display: block;
 				position: absolute;
@@ -1798,6 +1835,124 @@ $button_font : 'PlayFair Display', serif;
 
 .single {
 	.owl-carousel { margin-bottom: 1.5em; }
+}
+
+.page {
+	.page-featured-image {
+		display: block;
+		position: relative;
+		width: 100%;
+		height: 30em;
+		background-size: cover;
+		background-position: center;
+		background-color: #34495e;
+
+		.page-title {
+			display: inline-block;
+			position: absolute;
+			width: 450px;
+			max-width: 50%;
+			left: 50%;
+			top: 50%;
+			transform: translate(-50%, -50%);
+			font-family: "PlayFair Display", serif;
+			font-size: 4rem;
+			font-weight: normal;
+			letter-spacing: 1px;
+			color: #fff;
+			background: rgba(0, 0, 0, 0.5);
+			margin: 0;
+			padding: 0.25em 1em;
+			text-align: center;
+
+			&:before {
+				display: block;
+			    content: " ";
+			    border: 2px solid #fff;
+			    position: absolute;
+			    width: 80%;
+			    height: 150%;
+			    left: 50%;
+			    top: 50%;
+			    transform: translate(-50%, -50%);
+				pointer-events: none;
+			}
+		}
+	}
+
+	.page-content {
+		display: block;
+		font-family: $content_font;
+		font-size: 1.25rem;
+		font-weight: normal;
+	    color: #333;
+	    letter-spacing: 1px;
+	    line-height: 150%;
+		margin-bottom: 3em;
+		text-align: justify;
+	}
+}
+
+.founders-section {
+	display: flex;
+	flex-direction: row;
+	align-items: flex-start;
+	justify-content: space-between;
+	margin-bottom: 3em;
+
+	.administrator-anchor {
+		display: inline-block;
+		text-decoration: none;
+		width: 50%;
+		outline: 0;
+
+		&:first-of-type { padding-right: 1em; }
+		&:last-of-type { padding-left: 1em; }
+	}
+
+	.administrator {
+		display: inline-block;
+		width: 100%;
+		vertical-align: top;
+
+		.header {
+			display: block;
+			position: relative;
+
+			.name {
+				display: block;
+				font-family: $title_font;
+				font-size: 2rem;
+				font-weight: normal;
+				color: #333;
+				letter-spacing: 1px;
+				margin: 0 auto 0.5em;
+				padding: 0 0 0.5em;
+				border-bottom: 1px solid #333;
+			}
+
+			.avatar {
+				display: inline-block;
+				position: absolute;
+				right: 0;
+				top: 50%;
+				transform: translate(0, -25%);
+			}
+		}
+
+		.content {
+			display: block;
+			width: calc(100% - 140px);
+			text-align: justify;
+			font-family: $content_font;
+			font-size: 1rem;
+			font-weight: normal;
+			color: #333;
+			letter-spacing: 1px;
+			line-height: 150%;
+
+		}
+	}
 }
 
 .owl-dot.active { span { background: #34495e !important; } }
@@ -1883,6 +2038,80 @@ $button_font : 'PlayFair Display', serif;
 	}
 }
 
+.search-results {
+	.post-anchor {
+		display: block;
+		text-decoration: none;
+		margin-bottom: 3em;
+		outline: 0;
+		position: relative;
+
+		&:before {
+			display: inline-block;
+		    width: 1px;
+		    height: 100%;
+		    background: transparent;
+		    content: " ";
+		    position: absolute;
+		    left: 0;
+		    transform: translateX(-1em);
+
+			webkit-transition: all 0.15s ease-in-out;
+			-moz-transition: all 0.15s ease-in-out;
+			-o-transition: all 0.15s ease-in-out;
+			transition: all 0.15s ease-in-out;
+		}
+
+		&:hover:before,
+		&:active:before,
+		&:focus:before { background: #333; }
+
+		.post-container {
+			display: flex;
+			flex-direction: row;
+			justify-content: space-between;
+			align-items: flex-start;
+
+			.content {
+				display: inline-block;
+				width: 70%;
+				vertical-align: top;
+				padding-right: 1em;
+
+				.title {
+					font-family: $title_font;
+					font-size: 2.5rem;
+					font-weight: normal;
+					color: #333;
+					letter-spacing: 1px;
+					margin: 0 auto 0.5em;
+				}
+
+				.text {
+					font-family: $content_font;
+					font-size: 1rem;
+					font-weight: normal;
+					color: #333;
+					letter-spacing: 1px;
+					line-height: 150%;
+					text-align: justify;
+				}
+			}
+
+			.featured-image {
+				display: inline-block;
+				width: 30%;
+				height: 20em;
+				vertical-align: top;
+
+				background-color: #34495e;
+				background-size: cover;
+				background-position: center;
+			}
+		}
+	}
+}
+
 .archive {
 	.page-title {
 		font-family: "PLayFair Display", serif;
@@ -1944,6 +2173,139 @@ $button_font : 'PlayFair Display', serif;
 				}
 			}
 		}
+	}
+}
+
+.error404 {
+	.page-header {
+		.page-title,
+ 		.page-subtitle {
+			display: block;
+		    font-family: "PlayFair Display", serif;
+		    font-size: 3rem;
+		    font-weight: normal;
+		    color: #333;
+		    letter-spacing: 1px;
+		    text-align: center;
+		    margin: 0 auto 1em;
+		}
+
+		.page-subtitle {
+			font-size: 2rem;
+			text-align: left;
+			border-bottom: 1px solid #333;
+			padding: 0 0 0.5em;
+			margin: 0 0 0.5em;
+		}
+	}
+
+	.page-content {
+		.featured-posts {
+			display: block;
+			text-align: left;
+			padding: 0 1em;
+			margin-bottom: 3em;
+
+			.post-anchor {
+				display: inline-block;
+				width: 30%;
+				vertical-align: top;
+				height: 20em;
+				margin: 1.25%;
+				text-decoration: none;
+				position: relative;
+				outline: 0;
+
+				webkit-transition: all 0.15s ease-in-out;
+				-moz-transition: all 0.15s ease-in-out;
+				-o-transition: all 0.15s ease-in-out;
+				transition: all 0.15s ease-in-out;
+
+				&:hover,
+				&:active,
+				&:focus {
+					transform: translateY(-1em);
+				}
+
+				.post-container {
+					display: block;
+					width: 100%;
+					height: 100%;
+					background: #34495e;
+					background-size: cover;
+					background-position: center;
+					position: relative;
+
+					.post-title {
+						display: block;
+						font-family: $title_font;
+						font-size: 2rem;
+						font-weight: normal;
+						color: #fff;
+						letter-spacing: 1px;
+						position: absolute;
+						bottom: 0;
+						left: 0;
+						width: 100%;
+						text-align: left;
+						margin: 0;
+						padding: 0.5em;
+					}
+				}
+			}
+		}
+	}
+}
+
+.author {
+	.page-header {
+		display: block;
+		position: relative;
+
+		.avatar {
+			position: absolute;
+		    right: 0;
+		    top: 50%;
+		    transform: translate(0, -40%);
+		}
+
+		.user-meta {
+			.meta {
+				display: inline-block;
+				font-family: $content_font;
+			    font-size: 1rem;
+			    font-weight: normal;
+			    color: #333;
+			    letter-spacing: 1px;
+			}
+
+			.dotter {
+				display: inline-block;
+			    vertical-align: middle;
+			    font-size: 1.25rem;
+			    color: #777;
+			    margin: 0 0.5em;
+			}
+
+			.meta-link {
+				text-decoration: none;
+				color: #3498db;
+
+				&:hover,
+				&:active,
+				&:focus { color: #2980b9; }
+			}
+		}
+	}
+
+	.page-content {
+		display: block;
+	    font-family: "Cabin", sans-serif;
+	    font-size: 1.25rem;
+	    font-weight: normal;
+	    color: #333;
+	    letter-spacing: 1px;
+	    line-height: 150%;
 	}
 }
 
@@ -2084,18 +2446,14 @@ $button_font : 'PlayFair Display', serif;
 		&:after { width: 1em; }
 	}
 
-	.banner {
-		.content {
-			.header { font-size: 3rem; }
-		}
-	}
-
 	.site-content {
 		padding: 0 1em;
 
 		.small-boxes,
 		.tiny-boxes {
 			flex-direction: column;
+
+			.post-anchor { margin: 1.5% auto; }
 		}
 
 		.post-anchor {
@@ -2108,6 +2466,14 @@ $button_font : 'PlayFair Display', serif;
 			.content { width: 100%; padding: 0; }
 			.featured-image { width: 100%; }
 		}
+	}
+
+	.banner {
+		.content {
+			.header { font-size: 3rem; }
+		}
+
+		.post-anchor { width: initial !important; }
 	}
 
 	.footer-menu {
@@ -2136,6 +2502,54 @@ $button_font : 'PlayFair Display', serif;
 			padding: 0;
 
 			.post-anchor { margin: 1.25% 0; }
+		}
+	}
+
+	&.search-results {
+		.post-container {
+			flex-direction: column-reverse;
+
+			.content,
+			.featured-image {
+				display: block;
+				width: 100%;
+				padding: 0;
+			}
+		}
+	}
+
+	&.error404 {
+		.page-content {
+			.featured-posts,
+			.post-anchor { padding: 0; }
+		}
+	}
+
+	&.author {
+		.page-header {
+			.avatar {
+				width: 100px;
+    			height: 100px;
+				transform: translateY(-60%);
+			}
+		}
+	}
+
+	.page-featured-image {
+		.page-title {
+			width: 90%;
+			max-width: none;
+			font-size: 3rem;
+		}
+	}
+
+	.founders-section {
+		flex-direction: column;
+
+		.administrator-anchor {
+			width: 100%;
+		    padding: 0;
+		    margin-bottom: 1.5em;
 		}
 	}
 }

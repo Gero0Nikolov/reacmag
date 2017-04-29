@@ -17,7 +17,9 @@ $slider_elements = get_field( "slider_posts", $page_id );
         <div class="owl-item" style="background-image: url(<?php echo $post_featured_image; ?>);">
 			<a href="<?php echo $post_url; ?>" class="post-anchor">Read it!</a>
 			<div class="content">
-                <h1 class="header"><?php echo $post_title; ?></h1>
+                <a href="<?php echo $post_url; ?>" class="inline-post-anchor">
+					<h1 class="header"><?php echo $post_title; ?></h1>
+				</a>
             </div>
         </div>
         <?php } ?>

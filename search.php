@@ -18,6 +18,26 @@ $featured_posts = get_field( "featured_posts", 655 ); // Featured posts from Sea
 		<?php
 		if ( have_posts() ) : ?>
 
+			<div class='owl-carousel owl-theme'>
+
+			<?php
+			foreach ( $featured_posts as $post_ ) {
+				$post_url = get_permalink( $post_->ID );
+				$post_featured_image = get_the_post_thumbnail_url( $post_->ID, "full" );
+				?>
+
+				<div class='related-item' style='background-image: url(<?php echo $post_featured_image; ?>);'>
+					<a href='<?php echo $post_url; ?>' class='post-anchor'>
+						<h1 class='post-title'><?php echo $post_->post_title; ?></h1>
+					</a>
+				</div>
+
+				<?php
+			}
+			?>
+
+			</div>
+
 			<header class="page-header">
 				<h1 class="page-title"><?php printf( esc_html__( 'Search Results for: %s', 'reacmag' ), '<span>' . get_search_query() . '</span>' ); ?></h1>
 			</header><!-- .page-header -->
@@ -26,12 +46,26 @@ $featured_posts = get_field( "featured_posts", 655 ); // Featured posts from Sea
 			/* Start the Loop */
 			while ( have_posts() ) : the_post();
 
-				/**
-				 * Run the loop for the search to output the results.
-				 * If you want to overload this in a child theme then include a file
-				 * called content-search.php and that will be used instead.
-				 */
-				get_template_part( 'template-parts/content', 'search' );
+				$post_id = get_the_ID();
+				$post_url = get_permalink( $post_id );
+				$post_featured_image = get_the_post_thumbnail_url( $post_id, "full" );
+				$post_content = get_the_content();
+				$post_excerpt = wp_trim_words( $post_content, "55", "..." );
+				$post_title = get_the_title();
+
+				?>
+
+				<a href="<?php echo $post_url; ?>" class="post-anchor">
+					<div id="post-<?php echo $post_id; ?>" class="post-container">
+						<div class="content">
+							<h1 class="title"><?php echo $post_title; ?></h1>
+							<div class="text"><?php echo $post_excerpt; ?></div>
+						</div>
+						<div class="featured-image" style="background-image: url(<?php echo $post_featured_image; ?>);"></div>
+					</div>
+				</a>
+
+				<?php
 
 			endwhile;
 
@@ -50,7 +84,7 @@ $featured_posts = get_field( "featured_posts", 655 ); // Featured posts from Sea
 				$post_featured_image = get_the_post_thumbnail_url( $post_->ID, "full" );
 				?>
 
-				<a href="" class="post-anchor">
+				<a href="<?php echo $post_url; ?>" class="post-anchor">
 					<div id="post-<?php echo $post_->ID; ?>" class="post-container" style="background-image: url(<?php echo $post_featured_image; ?>);">
 						<h1 class="post-title"><?php echo $post_->post_title; ?></h1>
 					</div>

@@ -63,7 +63,7 @@ jQuery( document ).ready(function(){
         }
     } );
 
-    if ( jQuery( "body" ).hasClass( "single" ) ) {
+    if ( jQuery( "body" ).hasClass( "single" ) || jQuery( "body" ).hasClass( "search-results" ) ) {
         jQuery( '.owl-carousel' ).owlCarousel({
     	    center: false,
     	    items: 4,
