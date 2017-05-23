@@ -20,6 +20,11 @@
 
 <link href="https://fonts.googleapis.com/css?family=Playfair+Display" rel="stylesheet">
 <link href="https://fonts.googleapis.com/css?family=Cabin" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Yellowtail" rel="stylesheet">
+
+<script type="text/javascript">
+var ajax_url = "<?php echo admin_url('admin-ajax.php'); ?>";
+</script>
 
 <?php wp_head(); ?>
 </head>
@@ -34,9 +39,15 @@
 				<button id="search-controller" class="button simple-button">Search</button>
 			</div>
 			<div class="middle">
+				<?php if ( !is_user_logged_in() ) { ?>
 				<a href="<?php echo get_site_url(); ?>" class="logo-anchor">
 					<img src="<?php echo get_site_icon_url(); ?>" class="logo" />
 				</a>
+				<?php } else {
+					$user_ = get_currentuserinfo();
+					?>
+				<a href="<?php echo get_site_url(); ?>/my-profile" class='logo-anchor username'><?php echo $user_->user_login; ?></a>
+				<?php } ?>
 			</div>
 			<div class="right">
 				<button id="menu-controller" class="button simple-button menu-controller">
@@ -54,7 +65,10 @@
 			<span class="bar"></span>
 		</button>
 		<div id="menu" class="menu-holder">
-			<?php wp_nav_menu( array( "menu" => "menu-1" ) ); ?>
+			<?php
+			if ( is_user_logged_in() ) { wp_nav_menu( array( "menu" => "57" ) ); }
+			else { wp_nav_menu( array( "menu" => "2" ) ); }
+			?>
 		</div>
 	</div>
 

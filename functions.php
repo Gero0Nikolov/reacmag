@@ -189,3 +189,165 @@ function get_related_posts( $this_post, $categories_, $echo = false ) {
 		}
 	}
 }
+
+add_action( 'wp_ajax_nopriv_buy_promotion', 'buy_promotion' );
+add_action( 'wp_ajax_buy_promotion', 'buy_promotion' );
+function buy_promotion() {
+	$promotion_id = isset( $_POST[ "promotion_id" ] ) && !empty( $_POST[ "promotion_id" ] ) ? intval( $_POST[ "promotion_id" ] ) : 0;
+
+	if ( is_int( $promotion_id ) && $promotion_id > 0 ) {
+		if ( is_user_logged_in() ) {
+			// Add to cart
+		} else { echo json_encode( "login-action" ); }
+	} else { echo json_encode( "Don't try to hack ;)" ); }
+
+	die( "" );
+}
+
+add_action( 'wp_ajax_nopriv_login_user', 'login_user' );
+add_action( 'wp_ajax_login_user', 'login_user' );
+function login_user() {
+	if ( isset( $_POST[ "args" ] ) && !empty( $_POST[ "args" ] ) ) {
+		$args_ = (object)$_POST[ "args" ];
+		$args_->email = isset( $args_->email ) && !empty( $args_->email ) ? sanitize_text_field( $args_->email ) : "";
+		$args_->password = isset( $args_->password ) && !empty( $args_->password ) ? sanitize_text_field( $args_->password ) : "";
+
+		if ( isset( $args_->email ) && !empty( $args_->email ) && is_email( $args_->email ) ) {
+			if ( isset( $args_->password ) && !empty( $args_->password ) ) {
+				$result_ = "logged";
+
+				$creds = array(
+					"user_login" => $args_->email,
+					"user_password" => $args_->password,
+					"remember" => false
+				);
+				$user_ = wp_signon( $creds, false );
+				if ( is_wp_error( $user_ ) ) { $result_ = "Your email or password is wrong!"; }
+
+				echo json_encode( $result_ );
+			} else { echo json_encode( "Password is not set properly!" ); }
+		} else { echo json_encode( "Email is not set properly!" ); }
+	} else { echo json_encode( "Arguments are not set!" ); }
+
+	die( "" );
+}
+
+add_action( 'wp_ajax_nopriv_register_user', 'register_user' );
+add_action( 'wp_ajax_register_user', 'register_user' );
+function register_user() {
+	if ( isset( $_POST[ "args" ] ) && !empty( $_POST[ "args" ] ) ) {
+		$args_ = (object)$_POST[ "args" ];
+		$args_->email = isset( $args_->email ) && !empty( $args_->email ) ? sanitize_text_field( $args_->email ) : "";
+		$args_->username = isset( $args_->username ) && !empty( $args_->username ) ? sanitize_text_field( $args_->username ) : "";
+		$args_->password = isset( $args_->password ) && !empty( $args_->password ) ? sanitize_text_field( $args_->password ) : "";
+
+		if ( isset( $args_->email ) && !empty( $args_->email ) && is_email( $args_->email ) ) {
+			if ( isset( $args_->username ) && !empty( $args_->username ) ) {
+				if ( isset( $args_->password ) && !empty( $args_->password ) ) {
+					$result_ = "registered";
+					$registration_result = wp_create_user( $args_->username, $args_->password, $args_->email );
+
+					if ( is_wp_error( $registration_result ) ) {
+						$result_ = $registration_result->get_error_message();
+					} else {
+						$args = array(
+							"ID" => $registration_result,
+							"role" => "subscriber"
+						);
+						$update_results = wp_update_user( $args );
+					}
+					echo json_encode( $result_ );
+				} else { echo json_encode( "Password is not correct!" ); }
+			} else { echo json_encode( "Username is not correct!" ); }
+		} else { echo json_encode( "Email address is not correct!" ); }
+	} else { echo json_encode( "Arguments are not set!" ); }
+
+	die( "" );
+}
+
+function remove_admin_bar() {
+	if (
+		!current_user_can('authors') &&
+		!current_user_can('editors') &&
+		!current_user_can('administrator') && !is_admin()
+	) { show_admin_bar( false ); }
+}
+add_action('after_setup_theme', 'remove_admin_bar');
+
+add_action( 'wp_ajax_nopriv_logout_user', 'logout_user' );
+add_action( 'wp_ajax_logout_user', 'logout_user' );
+function logout_user() {
+	wp_logout();
+	echo json_encode( "logout" );
+	die( "" );
+}
+
+add_action( 'wp_ajax_nopriv_update_general_info', 'update_general_info' );
+add_action( 'wp_ajax_update_general_info', 'update_general_info' );
+function update_general_info() {
+	if ( isset( $_POST[ "args" ] ) && !empty( $_POST[ "args" ] ) ) {
+		$args_ = (object)$_POST[ "args" ];
+		$args_->email = isset( $args_->email ) && !empty( $args_->email ) && is_email( $args_->email ) ? sanitize_text_field( $args_->email ) : "";
+		$args_->password = isset( $args_->password ) && !empty( $args_->password ) ? sanitize_text_field( $args_->password ) : "";
+		$args_->current_password = isset( $args_->current_password ) && !empty( $args_->current_password ) ? sanitize_text_field( $args_->current_password ) : "";
+
+		$user_id = get_current_user_id();
+		$user_ = get_user_by( "ID", $user_id );
+
+		if ( $user_ && wp_check_password( $args_->current_password, $user_->data->user_pass, $user_id ) ) {
+			$user_data = array();
+			if ( is_email( $args_->email ) && !empty( $args_->email ) ) { $user_data[ "user_email" ] = $args_->email; }
+			if ( !empty( $args_->password ) ) { $user_data[ "user_pass" ] = $args_->password; }
+
+			$result_ = "updated";
+
+			if ( !empty( $user_data ) ) {
+				$user_data[ "ID" ] = $user_id;
+				$user_id = wp_update_user( $user_data );
+
+				if ( is_wp_error( $user_id ) ) { $result_ = $user_id->get_error_message(); }
+			}
+
+			echo json_encode( $result_ );
+		} else { echo json_encode( "It seems like that's not your password!" ); }
+	}
+
+	die( "" );
+}
+
+add_action( 'wp_ajax_nopriv_add_content', 'add_content' );
+add_action( 'wp_ajax_add_content', 'add_content' );
+function add_content() {
+	if ( isset( $_POST[ "args" ] ) && !empty( $_POST[ "args" ] ) ) {
+		$args_ = (object)$_POST[ "args" ];
+		$args_->content_id = isset( $args_->content_id ) && !empty( $args_->content_id ) ? intval( $args_->content_id ) : 0;
+		$args_->post_title = isset( $args_->post_title ) && !empty( $args_->post_title ) ? sanitize_text_field( $args_->post_title ) : "";
+		$args_->featured_image = isset( $args_->featured_image ) && !empty( $args_->featured_image ) ? sanitize_text_field( $args_->featured_image ) : "";
+		$args_->content = isset( $args_->content ) && !empty( $args_->content ) ? sanitize_text_field( $args_->content ) : "";
+
+		if ( !empty( $args_->post_title ) ) {
+			if ( !empty( $args_->content ) ) {
+				$result_ = "added";
+
+				$post_arr = array(
+					"ID" => $args_->content_id,
+					"post_title" => $args_->post_title,
+					"post_name" => sanitize_title_with_dashes( $args_->post_title ),
+					"post_type" => "promotions",
+					"post_status" => "draft",
+					"meta_input" => array(
+						"featured_image_link" => $args_->featured_image,
+						"content_link" => $args_->content
+					)
+				);
+				$post_id = wp_insert_post( $post_arr );
+
+				if ( is_wp_error( $post_id ) ) { $result_ = $post_id->get_error_message(); }
+
+				echo json_encode( $result_ );
+			} else { echo json_encode( "Post content can't be empty!" ); }
+		} else { echo json_encode( "Post title can't be empty!" ); }
+	} else { echo json_encode( "Arguments are not supplied!" ); }
+
+	die( "" );
+}

@@ -760,7 +760,7 @@ body {
   flex-direction: row;
   align-items: center;
   justify-content: space-between;
-  padding: 2em 10%;
+  padding: 1.5em 10%;
   background: rgba(255, 255, 255, 0.95);
   position: fixed;
   top: 0;
@@ -804,6 +804,13 @@ body {
     outline: 0;
     display: inline-block;
     line-height: 0; }
+    .sticky-bar .logo-anchor.username {
+      font-family: "Yellowtail", cursive;
+      font-size: 3rem;
+      font-weight: normal;
+      color: #34495e;
+      line-height: 170%;
+      letter-spacing: 1px; }
     .sticky-bar .logo-anchor .logo {
       width: 5em;
       font-size: 1rem;
@@ -837,7 +844,7 @@ body {
   display: block;
   position: relative;
   width: 100%;
-  margin-top: 9.5em;
+  margin-top: 9em;
   padding: 0 10%;
   overflow-x: hidden;
   overflow-y: hidden; }
@@ -1088,7 +1095,8 @@ body {
     margin: 0 0.25em; }
 
 .global-menu,
-.global-search {
+.global-search,
+#popup {
   display: flex;
   position: fixed;
   top: 0;
@@ -1107,7 +1115,8 @@ body {
   -o-transition: all 0.25s ease-in-out;
   transition: all 0.25s ease-in-out; }
   .global-menu .close-button,
-  .global-search .close-button {
+  .global-search .close-button,
+  #popup .close-button {
     display: inline-block;
     width: 3em;
     height: 3em;
@@ -1126,42 +1135,53 @@ body {
     -o-transition: all 0.25s ease-in-out;
     transition: all 0.25s ease-in-out; }
     .global-menu .close-button .bar,
-    .global-search .close-button .bar {
+    .global-search .close-button .bar,
+    #popup .close-button .bar {
       display: block;
       width: 100%;
       height: 2px;
       background: #000; }
     .global-menu .close-button .bar:first-of-type,
-    .global-search .close-button .bar:first-of-type {
+    .global-search .close-button .bar:first-of-type,
+    #popup .close-button .bar:first-of-type {
       transform: rotate(45deg); }
     .global-menu .close-button .bar:last-of-type,
-    .global-search .close-button .bar:last-of-type {
+    .global-search .close-button .bar:last-of-type,
+    #popup .close-button .bar:last-of-type {
       transform: translate(0, -2px) rotate(-45deg); }
     .global-menu .close-button:hover, .global-menu .close-button:active, .global-menu .close-button:focus,
     .global-search .close-button:hover,
     .global-search .close-button:active,
-    .global-search .close-button:focus {
+    .global-search .close-button:focus,
+    #popup .close-button:hover,
+    #popup .close-button:active,
+    #popup .close-button:focus {
       transform: scale(0.9); }
   .global-menu .menu-holder,
-  .global-search .menu-holder {
+  .global-search .menu-holder,
+  #popup .menu-holder {
     display: block; }
     .global-menu .menu-holder .menu,
-    .global-search .menu-holder .menu {
+    .global-search .menu-holder .menu,
+    #popup .menu-holder .menu {
       display: block;
       margin: 0;
       padding: 0;
       list-style: none; }
       .global-menu .menu-holder .menu .menu-item,
-      .global-search .menu-holder .menu .menu-item {
+      .global-search .menu-holder .menu .menu-item,
+      #popup .menu-holder .menu .menu-item {
         display: block;
         font-family: "PlayFair Display", serif;
         font-size: 3rem;
-        font-weight: normal; }
+        font-weight: normal;
+        line-height: 125%; }
         .global-menu .menu-holder .menu .menu-item a,
-        .global-search .menu-holder .menu .menu-item a {
+        .global-search .menu-holder .menu .menu-item a,
+        #popup .menu-holder .menu .menu-item a {
           color: #333;
           text-decoration: none;
-          display: block;
+          display: inline-block;
           letter-spacing: 1px;
           -webkit-transform: perspective(1px) translateZ(0);
           transform: perspective(1px) translateZ(0);
@@ -1169,7 +1189,8 @@ body {
           position: relative;
           overflow: hidden; }
           .global-menu .menu-holder .menu .menu-item a:before,
-          .global-search .menu-holder .menu .menu-item a:before {
+          .global-search .menu-holder .menu .menu-item a:before,
+          #popup .menu-holder .menu .menu-item a:before {
             content: "";
             position: absolute;
             z-index: 3;
@@ -1177,7 +1198,7 @@ body {
             right: 100%;
             top: 50%;
             transform: translateY(100%);
-            background: #34495e;
+            background: #333;
             height: 4px;
             -webkit-transition-property: right;
             transition-property: right;
@@ -1188,15 +1209,20 @@ body {
           .global-menu .menu-holder .menu .menu-item a:hover:before, .global-menu .menu-holder .menu .menu-item a:focus:before, .global-menu .menu-holder .menu .menu-item a:active:before,
           .global-search .menu-holder .menu .menu-item a:hover:before,
           .global-search .menu-holder .menu .menu-item a:focus:before,
-          .global-search .menu-holder .menu .menu-item a:active:before {
+          .global-search .menu-holder .menu .menu-item a:active:before,
+          #popup .menu-holder .menu .menu-item a:hover:before,
+          #popup .menu-holder .menu .menu-item a:focus:before,
+          #popup .menu-holder .menu .menu-item a:active:before {
             right: 0; }
   .global-menu .search-form,
-  .global-search .search-form {
+  .global-search .search-form,
+  #popup .search-form {
     display: block;
     width: 750px;
     max-width: 90%; }
     .global-menu .search-form .search-field,
-    .global-search .search-form .search-field {
+    .global-search .search-form .search-field,
+    #popup .search-form .search-field {
       display: block;
       width: 100%;
       background: none;
@@ -1211,8 +1237,38 @@ body {
       border-radius: 0;
       outline: 0; }
     .global-menu .search-form .search-submit,
-    .global-search .search-form .search-submit {
+    .global-search .search-form .search-submit,
+    #popup .search-form .search-submit {
       display: none; }
+
+#popup {
+  pointer-events: initial !important; }
+  #popup #popup-inner {
+    display: block;
+    margin: 0 auto;
+    width: 750px;
+    max-width: 90%; }
+    #popup #popup-inner .text {
+      display: inline-block;
+      font-family: "PlayFair Display", serif;
+      font-size: 2rem;
+      font-weight: normal;
+      color: #333;
+      letter-spacing: 1px; }
+    #popup #popup-inner input {
+      display: block;
+      width: 100%;
+      background: none;
+      border: none;
+      box-shadow: none;
+      font-family: "PlayFair Display", serif;
+      font-size: 3rem;
+      font-weight: normal;
+      padding: 0;
+      letter-spacing: 1px;
+      color: #333;
+      border-radius: 0;
+      outline: 0; }
 
 .post-area .featured-image {
   display: block;
@@ -1925,6 +1981,49 @@ body {
     .contact-us .content textarea:focus {
       border-color: #3498db; }
 
+.account-options {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  justify-content: center;
+  width: 100%;
+  margin-bottom: 3em; }
+  .account-options .form-title {
+    display: block;
+    text-align: left;
+    font-family: "PlayFair Display", serif;
+    font-size: 2rem;
+    font-weight: normal;
+    color: #333;
+    letter-spacing: 1px;
+    line-height: 100%;
+    margin: 0 auto 1em; }
+  .account-options input {
+    display: block;
+    width: 100%;
+    border: 1px solid #333;
+    border-radius: 0;
+    outline: 0;
+    font-family: "Cabin", sans-serif;
+    font-size: 1.25rem;
+    font-weight: normal;
+    color: #333;
+    letter-spacing: 1px;
+    padding: 0.25em 0.5em;
+    margin-bottom: 0.5em; }
+  .account-options .login {
+    display: inline-block;
+    vertical-align: top;
+    width: 50%;
+    padding-right: 1em;
+    padding-top: 1em; }
+  .account-options .register {
+    display: inline-block;
+    vertical-align: top;
+    width: 48%;
+    border-left: 1px solid #333;
+    padding: 1em 0 1em 1em; }
+
 .button {
   font-family: "PlayFair Display", serif;
   font-size: 1.25rem;
@@ -1964,6 +2063,237 @@ body {
     color: #fff;
     border-color: #333;
     background: #333; }
+
+.buy-button {
+  display: inline-block;
+  background: none;
+  border: 1px solid;
+  box-shadow: none !important;
+  outline: none;
+  color: #fff;
+  webkit-transition: all 0.25s ease-in-out;
+  -moz-transition: all 0.25s ease-in-out;
+  -o-transition: all 0.25s ease-in-out;
+  transition: all 0.25s ease-in-out; }
+  .buy-button:hover, .buy-button:active, .buy-button:focus {
+    color: #fff;
+    border-color: #fff;
+    background: #2ecc71; }
+
+.quote {
+  font-family: "PlayFair Display", serif;
+  font-size: 1.5rem;
+  font-weight: normal;
+  color: #333;
+  letter-spacing: 1px;
+  line-height: 150%;
+  text-align: center;
+  margin-bottom: 3em; }
+
+.promote {
+  display: block;
+  text-align: left;
+  margin-bottom: 3em; }
+  .promote .title {
+    display: block;
+    font-family: "PlayFair Display", serif;
+    font-size: 4rem;
+    font-weight: normal;
+    color: #333;
+    letter-spacing: 1px;
+    text-align: center;
+    margin: 0;
+    line-height: 100%; }
+  .promote .plans {
+    display: block;
+    margin-top: 1em; }
+    .promote .plans .row {
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+      align-items: flex-start; }
+      .promote .plans .row .plan {
+        display: inline-flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        vertical-align: top;
+        width: 50%;
+        height: 30em;
+        background-color: #34495e;
+        background-size: cover;
+        background-position: center;
+        position: relative;
+        padding: 5%;
+        border: none; }
+        .promote .plans .row .plan:before {
+          content: " ";
+          display: block;
+          position: absolute;
+          width: 95%;
+          height: 95%;
+          left: 2.5%;
+          top: 2.5%;
+          border: 2px solid #fff;
+          pointer-events: none;
+          z-index: 2; }
+        .promote .plans .row .plan:after {
+          content: " ";
+          position: absolute;
+          display: block;
+          width: 100%;
+          height: 100%;
+          top: 0;
+          left: 0;
+          background: rgba(0, 0, 0, 0.35);
+          pointer-events: none; }
+        .promote .plans .row .plan .plan-icon {
+          display: block;
+          width: 7em;
+          margin: 0 auto;
+          line-height: 100%;
+          z-index: 2; }
+        .promote .plans .row .plan .plan-title {
+          display: block;
+          font-family: "PlayFair Display", serif;
+          font-size: 2rem;
+          font-weight: normal;
+          color: #fff;
+          text-align: center;
+          letter-spacing: 1px;
+          line-height: 100%;
+          margin: 0.5em 0 0.25em;
+          z-index: 2; }
+        .promote .plans .row .plan .plan-description {
+          display: block;
+          font-family: "Cabin", sans-serif;
+          font-size: 1rem;
+          font-weight: normal;
+          color: #fff;
+          letter-spacing: 1px;
+          line-height: 125%;
+          text-align: center;
+          z-index: 2; }
+        .promote .plans .row .plan .buy-button {
+          z-index: 2; }
+
+.dinamyc-section {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: flex-start;
+  margin-bottom: 3em; }
+  .dinamyc-section .menu {
+    display: inline-block;
+    width: 30%;
+    vertical-align: top; }
+    .dinamyc-section .menu .controller {
+      display: block;
+      width: 100%;
+      text-align: left;
+      border: none;
+      border-radius: 0;
+      background: none;
+      font-family: "PlayFair Display", serif;
+      font-size: 1.25rem;
+      font-weight: normal;
+      letter-spacing: 1px;
+      padding: 0.5em 0;
+      border-bottom: 1px solid #333;
+      outline: 0;
+      position: relative;
+      webkit-transition: all 0.25s ease-in-out;
+      -moz-transition: all 0.25s ease-in-out;
+      -o-transition: all 0.25s ease-in-out;
+      transition: all 0.25s ease-in-out; }
+      .dinamyc-section .menu .controller .icon {
+        display: inline-block;
+        vertical-align: middle;
+        font-size: 0.85rem;
+        margin-right: 0.5em; }
+      .dinamyc-section .menu .controller:hover, .dinamyc-section .menu .controller:active, .dinamyc-section .menu .controller:focus {
+        padding: 0.5em 0.25em;
+        background: rgba(52, 73, 94, 0.25); }
+      .dinamyc-section .menu .controller.active {
+        padding: 0.5em;
+        background: rgba(52, 73, 94, 0.25); }
+  .dinamyc-section .tabs {
+    display: inline-block;
+    width: 70%;
+    min-height: 200px;
+    vertical-align: top;
+    border-left: 1px solid #333;
+    padding-left: 1em; }
+    .dinamyc-section .tabs .tab {
+      display: none; }
+      .dinamyc-section .tabs .tab.active {
+        display: block !important; }
+      .dinamyc-section .tabs .tab .tab-header {
+        display: block;
+        text-align: left;
+        font-family: "PlayFair Display", serif;
+        font-size: 2rem;
+        font-weight: normal;
+        color: #333;
+        letter-spacing: 1px;
+        margin: 0 0 0.5em; }
+      .dinamyc-section .tabs .tab #form label {
+        display: block;
+        font-family: "Cabin", sans-serif;
+        font-size: 1.25rem;
+        font-weight: normal;
+        color: #333;
+        letter-spacing: 1px; }
+      .dinamyc-section .tabs .tab #form input {
+        display: block;
+        width: 100%;
+        border: 1px solid #333;
+        outline: 0;
+        border-radius: 0;
+        margin-bottom: 0.5em;
+        font-size: 1rem;
+        font-weight: normal;
+        color: #333;
+        letter-spacing: 1px;
+        padding: 0.5em; }
+      .dinamyc-section .tabs .tab #add-contents-container {
+        margin-top: 2em;
+        display: none; }
+      .dinamyc-section .tabs .tab .table-layout {
+        margin: 2em 0 0 0; }
+        .dinamyc-section .tabs .tab .table-layout td,
+        .dinamyc-section .tabs .tab .table-layout th {
+          font-size: 1rem;
+          letter-spacing: 1px;
+          padding: 0.25em 0.5em;
+          border: 1px solid #333;
+          color: #333; }
+        .dinamyc-section .tabs .tab .table-layout th {
+          font-family: "PlayFair Display", serif;
+          font-weight: bold;
+          text-align: left; }
+        .dinamyc-section .tabs .tab .table-layout td {
+          font-family: "Cabin", sans-serif;
+          font-weight: normal;
+          text-align: left; }
+        .dinamyc-section .tabs .tab .table-layout a {
+          display: inline-block;
+          text-decoration: none;
+          color: #3498db; }
+          .dinamyc-section .tabs .tab .table-layout a:hover, .dinamyc-section .tabs .tab .table-layout a:active, .dinamyc-section .tabs .tab .table-layout a:focus {
+            color: #2980b9; }
+        .dinamyc-section .tabs .tab .table-layout .table-controller {
+          display: inline-block;
+          vertical-align: middle;
+          border: none;
+          background: none;
+          box-shadow: none !important;
+          outline: 0;
+          padding: 0.25em;
+          font-size: 1rem;
+          color: #333; }
+          .dinamyc-section .tabs .tab .table-layout .table-controller:hover, .dinamyc-section .tabs .tab .table-layout .table-controller:active, .dinamyc-section .tabs .tab .table-layout .table-controller:focus {
+            color: #34495e; }
 
 /* Radial Out */
 .hvr-radial-out {
@@ -2023,7 +2353,7 @@ body {
   right: 100%;
   top: 50%;
   transform: translateY(-50%);
-  background: #2098D1;
+  background: #333;
   height: 4px;
   -webkit-transition-property: right;
   transition-property: right;
@@ -2065,7 +2395,8 @@ body {
 .mobile .footer-menu .dotter {
   display: none; }
 .mobile .global-menu .close-button,
-.mobile .global-search .close-button {
+.mobile .global-search .close-button,
+.mobile #popup .close-button {
   top: 10%;
   right: calc(10% - 1.5em); }
 .mobile.archive .posts-list .post-anchor {
@@ -2098,5 +2429,18 @@ body {
     width: 100%;
     padding: 0;
     margin-bottom: 1.5em; }
+.mobile .promote .row {
+  flex-direction: column; }
+  .mobile .promote .row .plan {
+    display: flex;
+    width: 100%; }
+.mobile .account-options {
+  flex-direction: column; }
+  .mobile .account-options .login,
+  .mobile .account-options .register {
+    display: block;
+    width: 100%;
+    border: none;
+    padding: 1em 0; }
 
 /*# sourceMappingURL=style.css.map */
