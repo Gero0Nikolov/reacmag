@@ -90,6 +90,7 @@ jQuery( document ).ready(function(){
             dots: false,
             nav: false,
             autoplay: true,
+			autoplayTimeout: 2000,
     	    responsive:{
     	        600:{
     	            items:1
@@ -110,11 +111,75 @@ jQuery( document ).ready(function(){
 						promotion_id : promotion_id
 					},
 					success : function( response ) {
-						response = JSON.parse( response );
+						var response = JSON.parse( response );
 						console.log( response );
 
 						if ( response == "login-action" ) { window.location = window.location.origin +"/login"; }
-						else {}
+						else if ( typeof response === "object" || response != null ) {
+							response.terms_conditions.content = response.terms_conditions.content.replace( "[plan_name]", response.plan.title );
+
+							view_ = "\
+							<div id='paypal-button'></div>\
+							<h1 class='text-title'>"+ response.terms_conditions.title +"</h1>\
+							<div class='text-paragraph'>"+ response.terms_conditions.content +"</div>\
+							";
+							trowError( view_ );
+
+							jQuery( "#popup #popup-inner" ).css( "position: relative" );
+							jQuery( "#popup #popup-inner #popup-closer" ).css( {
+								"top" : "5%",
+								"right" : "5%"
+							} );
+
+							// Connect the button with PayPal
+							paypal.Button.render({
+
+						        env: response.paypal.environment, // Optional: specify 'sandbox' environment
+
+						        client: {
+						            sandbox: response.paypal.client_sandbox_id,
+						            production: response.paypal.client_production_id
+						        },
+
+						        payment: function() {
+
+						            var env    = this.props.env;
+						            var client = this.props.client;
+
+						            return paypal.rest.payment.create(env, client, {
+						                transactions: [
+						                    {
+						                        amount: { total: response.plan.price, currency: 'EUR' }
+						                    }
+						                ]
+						            });
+						        },
+
+						        commit: true, // Optional: show a 'Pay Now' button in the checkout flow
+
+						        onAuthorize: function(data, actions) {
+
+						            // Optional: display a confirmation page here
+
+						            return actions.payment.execute().then(function() {
+						                jQuery.ajax( {
+											url : ajax_url,
+											type : "POST",
+											data : {
+												action : "add_promotion_to_user",
+												promotion_id : response.plan.id
+											},
+											success : function( response ) {
+												removePopup();
+												setTimeout( function(){ trowError( "Congratulations, you got the promotion plan!" ); }, 700 );
+											},
+											error : function( response ){}
+										} );
+						            });
+						        }
+
+						    }, '#paypal-button');
+						} else { trowError( response ); }
 					}
 				} );
 			} );
@@ -249,6 +314,43 @@ jQuery( document ).ready(function(){
 				jQuery( "#my-profile #add-contents-container #link-to-content" ).val( jQuery( "#my-profile #content-"+ content_id +" #content" ).children( "a" ).attr( "href" ) );
 
 				jQuery( "#my-profile #add-contents-container" ).show();
+			} );
+		} );
+
+		jQuery( "#my-profile #add-plan-controller" ).on( "click", function(){
+			window.location = window.location.origin +"/promote";
+		} );
+
+		jQuery( "#my-profile #update-promotions-controller" ).on( "click", function(){
+			plans = [];
+
+			jQuery( "#my-profile #plan-holder" ).each( function(){
+				plan = {
+					plan_id : jQuery( this ).find( "select" ).attr( "id" ).split( "-" )[1],
+					post_id : jQuery( this ).find( "select" ).val()
+				};
+				plans.push( plan );
+			} );
+
+			jQuery.ajax( {
+				url : ajax_url,
+				type : "POST",
+				data : {
+					action : "update_promotions",
+					plans : plans
+				},
+				success : function( response ) {
+					response = JSON.parse( response );
+					if ( response == "updated" ) { window.location.reload( true ); }
+					else { trowError( response ); }
+				},
+				error : function( response ) {}
+			} );
+		} );
+
+		jQuery( "#my-profile #renew-controller" ).each( function(){
+			jQuery( this ).on( "click", function(){
+				window.location = window.location.origin +"/promote";
 			} );
 		} );
 	}

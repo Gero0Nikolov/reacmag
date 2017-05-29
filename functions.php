@@ -197,9 +197,95 @@ function buy_promotion() {
 
 	if ( is_int( $promotion_id ) && $promotion_id > 0 ) {
 		if ( is_user_logged_in() ) {
-			// Add to cart
+			$terms_conditions_page = get_page_by_path( "terms-conditions", OBJECT, "page" );
+			$paypal_settings = get_page_by_path( "paypal-payments-controller", OBJECT, "page" );
+
+			$response_ = new stdClass;
+			$response_->terms_conditions = new stdClass;
+			$response_->terms_conditions->title = $terms_conditions_page->post_title;
+			$response_->terms_conditions->content = nl2br( $terms_conditions_page->post_content );
+			$response_->paypal = new stdClass;
+			$response_->paypal->environment = get_post_meta( $paypal_settings->ID, "paypal_environment", true );
+			$response_->paypal->client_sandbox_id = get_post_meta( $paypal_settings->ID, "paypal_client_id_sandbox", true );
+			$response_->paypal->client_production_id = get_post_meta( $paypal_settings->ID, "paypal_client_id_production", true );
+			$response_->plan = new stdClass;
+			$response_->plan->id = $promotion_id;
+			$response_->plan->title = get_the_title( $promotion_id );
+			$response_->plan->price = get_post_meta( $promotion_id, "plan_price", true );
+
+			echo json_encode( $response_ );
 		} else { echo json_encode( "login-action" ); }
 	} else { echo json_encode( "Don't try to hack ;)" ); }
+
+	die( "" );
+}
+
+add_action( 'wp_ajax_nopriv_add_promotion_to_user', 'add_promotion_to_user' );
+add_action( 'wp_ajax_add_promotion_to_user', 'add_promotion_to_user' );
+function add_promotion_to_user() {
+	$promotion_id = isset( $_POST[ "promotion_id" ] ) && !empty( $_POST[ "promotion_id" ] ) ? intval( $_POST[ "promotion_id" ] ) : 0;
+
+	if ( is_int( $promotion_id ) && $promotion_id > 0 ) {
+		$user_id = get_current_user_id();
+
+		$args = array(
+			"posts_per_page" => 1,
+			"post_type" => "user_plan",
+			"post_status" => "publish",
+			"author" => $user_id,
+			"meta_key" => "promotion_plan",
+			"meta_value" => $promotion_id,
+			"meta_compare" => "="
+		);
+		$plans_ = get_posts( $args );
+
+		$result_ = "saved";
+
+		if ( count( $plans_ ) > 0 ) {
+			$promotion_active_period = strtotime( "+7 day", strtotime( date( "Y-m-d" ) ) );
+			update_post_meta( $plans_[ 0 ]->ID, "promotion_active_period", $promotion_active_period );
+		} else {
+			$title_ = get_the_title( $promotion_id ) ." ". get_user_meta( $user_id, "first_name", true ) ." ". $user_id;
+			$post_arr = array(
+				"ID" => 0,
+				"post_type" => "user_plan",
+				"post_status" => "publish",
+				"post_title" => $title_,
+				"post_name" => sanitize_text_field( $title_ ),
+				"meta_input" => array(
+					"promotion_plan" => $promotion_id,
+					"promotion_active_period" => strtotime( "+7 day", strtotime( date( "Y-m-d" ) ) )
+				)
+			);
+			$post_id = wp_insert_post( $post_arr );
+
+			if ( is_wp_error( $post_id ) ) { $result_ = $post_id->get_error_message(); }
+		}
+
+		echo json_encode( $result_ );
+	} else { echo json_encode( "Promotion ID is not set." ); }
+
+	die( "" );
+}
+
+add_action( 'wp_ajax_nopriv_update_promotions', 'update_promotions' );
+add_action( 'wp_ajax_update_promotions', 'update_promotions' );
+function update_promotions() {
+	if ( isset( $_POST[ "plans" ] ) && !empty( $_POST[ "plans" ] ) ) {
+		$plans_ = $_POST[ "plans" ];
+
+		foreach ( $plans_ as $plan_ ) {
+			$plan_ = (object)$plan_;
+			$plan_->plan_id = isset( $plan_->plan_id ) && !empty( $plan_->plan_id ) ? intval( $plan_->plan_id ) : 0;
+			$plan_->post_id = isset( $plan_->post_id ) && !empty( $plan_->post_id ) ? intval( $plan_->post_id ) : 0;
+
+			if ( is_int( $plan_->plan_id ) && $plan_->plan_id > 0 ) {
+				update_post_meta( $plan_->plan_id, "promotion_post", $plan_->post_id );
+			}
+		}
+
+		echo json_encode( "updated" );
+	} else { echo json_encode( "Plans are not supplied!" ); }
 
 	die( "" );
 }

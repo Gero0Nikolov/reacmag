@@ -1375,6 +1375,7 @@ body { background: #000; }
 	    top: 20%;
 	    right: 20%;
 		outline: 0;
+		transform: translateZ(0);
 
 		webkit-transition: all 0.25s ease-in-out;
 		-moz-transition: all 0.25s ease-in-out;
@@ -1483,14 +1484,32 @@ body { background: #000; }
 		margin: 0 auto;
 		width: 750px;
 		max-width: 90%;
+		max-height: 90%;
+		overflow-x: hidden;
+		overflow-y: auto;
+		-webkit-overflow-scrolling: touch;
+		position: static;
 
 		.text {
-			display: inline-block;
+			display: block;
 			font-family: "PlayFair Display", serif;
 			font-size: 2rem;
 			font-weight: normal;
 			color: #333;
 			letter-spacing: 1px;
+			text-align: center;
+
+			.text-title {
+				font-size: 2rem;
+				font-weight: bold;
+				text-align: left;
+			}
+
+			.text-paragraph {
+				font-size: 1.25rem;
+				text-align: left;
+				line-height: 125%;
+			}
 		}
 
 		input {
@@ -2759,6 +2778,8 @@ body { background: #000; }
 
 		.tab {
 			display: none;
+			overflow: auto;
+			-webkit-overflow-scrolling: touch;
 
 			&.active { display: block !important; }
 
@@ -2783,7 +2804,8 @@ body { background: #000; }
 				    letter-spacing: 1px;
 				}
 
-				input {
+				input,
+				select {
 					display: block;
 					width: 100%;
 					border: 1px solid #333;
@@ -2825,6 +2847,20 @@ body { background: #000; }
 					font-family: $content_font;
 					font-weight: normal;
 					text-align: left;
+				}
+
+				select {
+					display: block;
+					width: 100%;
+					border: 1px solid #333;
+					outline: 0;
+					border-radius: 0;
+					font-size: 1rem;
+					font-weight: normal;
+					color: #333;
+					letter-spacing: 1px;
+					padding: 0.5em;
+				    -webkit-appearance: none;
 				}
 
 				a {
@@ -3068,6 +3104,30 @@ body { background: #000; }
 			width: 100%;
 			border: none;
 			padding: 1em 0;
+		}
+	}
+
+	.dinamyc-section {
+		flex-direction: column;
+
+		.menu {
+			display: block;
+			width: 100%;
+			overflow: auto;
+			white-space: nowrap;
+			-webkit-overflow-scrolling: touch;
+
+			.controller {
+				display: inline-block;
+				width: 40%;
+			}
+		}
+
+		.tabs {
+			display: block;
+		    width: 100%;
+		    border-left: none;
+		    padding-left: 0;
 		}
 	}
 }

@@ -43,3 +43,4 @@ $page_plans = get_field( "plans", $page_id );
 		</div>
 	</div>
 </div>
+<script src="https://www.paypalobjects.com/api/checkout.js"></script>

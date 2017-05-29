@@ -4,6 +4,7 @@
 */
 
 $user_ = get_currentuserinfo();
+$user_id = $user_->data->ID;
 ?>
 
 <div id="my-profile" class="dinamyc-section">
@@ -87,6 +88,75 @@ $user_ = get_currentuserinfo();
 		</div>
 		<div id="plans" class="tab">
 			<h1 class="tab-header">Plans</h1>
+			<div id="plans-controls" class="tab-controls">
+				<button id="add-plan-controller" class="button simple-button">Add new</button>
+				<button id="update-promotions-controller" class="button simple-button">Update</button>
+			</div>
+			<table class="table-layout">
+				<tr>
+					<th>Actions</th>
+					<th>Plan Type</th>
+					<th>Purchased on</th>
+					<th>Active untill</th>
+					<th>Post relation</th>
+				</tr>
+				<?php
+				$args = array(
+					"posts_per_page" => -1,
+					"post_type" => "promotions",
+					"post_status" => "publish",
+					"author" => $user_id,
+					"orderby" => "ID",
+					"order" => "DESC"
+				);
+				$promotions_ = get_posts( $args );
+				$promotion_selection = "<select class='post-selector'><option value=' '></option>";
+				foreach ( $promotions_ as $promotion_ ) {
+					$promotion_selection .= "<option value='". $promotion_->ID ."'>". $promotion_->post_title ."</option>";
+				}
+				$promotion_selection .= "</select>";
+
+				$args = array(
+					"posts_per_page" => -1,
+					"post_type" => "user_plan",
+					"post_status" => "publish",
+					"author" => $user_id,
+					"orderby" => "ID",
+					"order" => "DESC"
+				);
+				$plans_ = get_posts( $args );
+
+				foreach ( $plans_ as $plan_ ) {
+					$promotion_id = get_post_meta( $plan_->ID, "promotion_plan", true );
+					$promotion_active_period = get_post_meta( $plan_->ID, "promotion_active_period", true );
+					$promotion_post = get_post_meta( $plan_->ID, "promotion_post", true );
+					?>
+
+					<tr id="plan-holder">
+						<td><button id="renew-controller" class="table-controller fa fa-recycle" title="Renew your plan from today"></button></td>
+						<td><?php echo get_the_title( $promotion_id ); ?></td>
+						<td><?php echo date( "d M Y", strtotime( $plan_->post_date ) ); ?></td>
+						<td><?php echo date( "d M Y", $promotion_active_period ); ?></td>
+						<td>
+							<select id="plan-<?php echo $plan_->ID; ?>" class="post-selector">
+								<option value=" "></option>
+								<?php
+								foreach ( $promotions_ as $promotion_ ) {
+									?>
+
+									<option value="<?php echo $promotion_->ID; ?>" <?php echo $promotion_->ID == $promotion_post ? "selected='selected'" : ""; ?>><?php echo $promotion_->post_title; ?></option>
+
+									<?php
+								}
+								?>
+							</select>
+						</td>
+					</tr>
+
+					<?php
+				}
+				?>
+			</table>
 		</div>
 	</div>
 </div>

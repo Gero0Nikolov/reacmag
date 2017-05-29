@@ -1130,6 +1130,7 @@ body {
     top: 20%;
     right: 20%;
     outline: 0;
+    transform: translateZ(0);
     webkit-transition: all 0.25s ease-in-out;
     -moz-transition: all 0.25s ease-in-out;
     -o-transition: all 0.25s ease-in-out;
@@ -1247,14 +1248,28 @@ body {
     display: block;
     margin: 0 auto;
     width: 750px;
-    max-width: 90%; }
+    max-width: 90%;
+    max-height: 90%;
+    overflow-x: hidden;
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+    position: static; }
     #popup #popup-inner .text {
-      display: inline-block;
+      display: block;
       font-family: "PlayFair Display", serif;
       font-size: 2rem;
       font-weight: normal;
       color: #333;
-      letter-spacing: 1px; }
+      letter-spacing: 1px;
+      text-align: center; }
+      #popup #popup-inner .text .text-title {
+        font-size: 2rem;
+        font-weight: bold;
+        text-align: left; }
+      #popup #popup-inner .text .text-paragraph {
+        font-size: 1.25rem;
+        text-align: left;
+        line-height: 125%; }
     #popup #popup-inner input {
       display: block;
       width: 100%;
@@ -2225,7 +2240,9 @@ body {
     border-left: 1px solid #333;
     padding-left: 1em; }
     .dinamyc-section .tabs .tab {
-      display: none; }
+      display: none;
+      overflow: auto;
+      -webkit-overflow-scrolling: touch; }
       .dinamyc-section .tabs .tab.active {
         display: block !important; }
       .dinamyc-section .tabs .tab .tab-header {
@@ -2244,7 +2261,8 @@ body {
         font-weight: normal;
         color: #333;
         letter-spacing: 1px; }
-      .dinamyc-section .tabs .tab #form input {
+      .dinamyc-section .tabs .tab #form input,
+      .dinamyc-section .tabs .tab #form select {
         display: block;
         width: 100%;
         border: 1px solid #333;
@@ -2276,6 +2294,18 @@ body {
           font-family: "Cabin", sans-serif;
           font-weight: normal;
           text-align: left; }
+        .dinamyc-section .tabs .tab .table-layout select {
+          display: block;
+          width: 100%;
+          border: 1px solid #333;
+          outline: 0;
+          border-radius: 0;
+          font-size: 1rem;
+          font-weight: normal;
+          color: #333;
+          letter-spacing: 1px;
+          padding: 0.5em;
+          -webkit-appearance: none; }
         .dinamyc-section .tabs .tab .table-layout a {
           display: inline-block;
           text-decoration: none;
@@ -2442,5 +2472,21 @@ body {
     width: 100%;
     border: none;
     padding: 1em 0; }
+.mobile .dinamyc-section {
+  flex-direction: column; }
+  .mobile .dinamyc-section .menu {
+    display: block;
+    width: 100%;
+    overflow: auto;
+    white-space: nowrap;
+    -webkit-overflow-scrolling: touch; }
+    .mobile .dinamyc-section .menu .controller {
+      display: inline-block;
+      width: 40%; }
+  .mobile .dinamyc-section .tabs {
+    display: block;
+    width: 100%;
+    border-left: none;
+    padding-left: 0; }
 
 /*# sourceMappingURL=style.css.map */
