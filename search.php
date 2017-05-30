@@ -9,7 +9,58 @@
 
 get_header();
 
-$featured_posts = get_field( "featured_posts", 655 ); // Featured posts from Search page controller
+$admin_featured_posts = get_field( "featured_posts", 655 ); // Featured posts from Search page controller
+
+$featured_posts = array();
+
+// Get promotions
+$args = array(
+	"posts_per_page" => 8,
+	"post_type" => "user_plan",
+	"post_status" => "publish",
+	"orderby" => "rand",
+	"order" => "ASC",
+	"meta_query" => array(
+		"relation" => "AND",
+		array(
+			"key" => "promotion_active_period",
+			"value" => strtotime( date( "Y-m-d" ) ),
+			"compare" => ">"
+		),
+		array(
+			"key" => "promotion_plan",
+			"value" => 676, // The slider promo plan
+			"compare" => "="
+		),
+		array(
+			"key" => "promotion_post",
+			"value" => "",
+			"compare" => "!="
+		)
+	)
+);
+$user_promo_plans = get_posts( $args );
+$count_user_promo_plans = count( $user_promo_plans );
+
+foreach ( $user_promo_plans as $plan_ ) {
+	$promotion_post = get_post_meta( $plan_->ID, "promotion_post", true );
+	$featured_posts[] = get_post( $promotion_post );
+}
+
+if ( $count_user_promo_plans < 10 ) {
+	$count_slides = $count_user_promo_plans;
+	$posts_pointer = 0;
+	while ( $count_posts < 10 ) {
+		if ( isset( $admin_featured_posts[ $posts_pointer ] ) && !empty( $admin_featured_posts[ $posts_pointer ] ) ) {
+			$featured_posts[] = $admin_featured_posts[ $posts_pointer ];
+		}
+		$posts_pointer += 1;
+		$count_posts += 1;
+	}
+}
+
+// Shuffle the slides
+shuffle( $featured_posts );
 ?>
 
 	<section id="primary" class="content-area">

@@ -24,8 +24,13 @@ $args = array(
 		),
 		array(
 			"key" => "promotion_plan",
-			"value" => 681, // The slider promo plan
+			"value" => 676, // The slider promo plan
 			"compare" => "="
+		),
+		array(
+			"key" => "promotion_post",
+			"value" => "",
+			"compare" => "!="
 		)
 	)
 );
