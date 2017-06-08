@@ -12,6 +12,7 @@ $featured_posts = get_field( "featured_posts", $page_id );
 		<h1 class="form-title">Login</h1>
 		<input type="email" id="email" placeholder="Email">
 		<input type="password" id="password" placeholder="Password">
+		<button id="forgotten-password" class="forgotten-password-button text-button" style="display: block;">Lost password?</button>
 		<button id="login-button" class="login-button button simple-button animated infinite">Login</button>
 	</div>
 	<div id="registration-form" class="register">

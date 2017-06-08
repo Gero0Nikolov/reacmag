@@ -437,3 +437,61 @@ function add_content() {
 
 	die( "" );
 }
+
+add_action( 'wp_ajax_nopriv_reset_reactive_password', 'reset_reactive_password' );
+add_action( 'wp_ajax_reset_reactive_password', 'reset_reactive_password' );
+function reset_reactive_password() {
+	$email_ = isset( $_POST[ "email" ] ) && !empty( $_POST[ "email" ] ) ? sanitize_text_field( $_POST[ "email" ] ) : "";
+
+	if ( !empty( $email_ ) && is_email( $email_ ) ) {
+		$user_ = get_user_by( "email", $email_ );
+		if ( $user_ !== false ) {
+			$new_password = uniqid();
+			wp_set_password( $new_password, $user_->ID );
+			generate_email_notification( $user_->ID, "Hello there!<br>Your password was changed.<br>Your new password is: ". $new_password );
+			echo json_encode( "Check your email!" );
+		} else { echo json_encode( "Email is wrong!" ); }
+	} else { echo json_encode( "Email is not set properly!" ); }
+
+	die( "" );
+}
+
+function generate_email_notification( $user_id, $email_text ) {
+	$user_id = intval( $user_id );
+
+	if ( is_int( $user_id ) && $user_id > 0 ) {
+		$user_ = get_user_by( "ID", $user_id );
+
+		$email_template = file_get_contents( get_template_directory() ."/email-templates/notification.html" );
+		$email_template = str_replace( "[site-url]", get_site_url(), $email_template );
+		$email_template = str_replace( "[date]", date( "d M Y" ), $email_template );
+		$email_template = str_replace( "[message]", $email_text, $email_template );
+
+		wp_mail(
+			$user_->user_email,
+			"Reactive Magazine Notification",
+			$email_template,
+			array( "Content-Type: text/html; charset=UTF-8" )
+		);
+	}
+}
+
+add_action( 'wp_ajax_nopriv_add_subscriber', 'add_subscriber' );
+add_action( 'wp_ajax_add_subscriber', 'add_subscriber' );
+function add_subscriber() {
+	$email_ = isset( $_POST[ "email" ] ) && !empty( $_POST[ "email" ] ) ? sanitize_text_field( $_POST[ "email" ] ) : "";
+
+	if ( !empty( $email_ ) && is_email( $email_ ) ) {
+		$password = uniqid();
+		$username = explode( "@", $email_ )[0] . uniqid();
+
+		$wp_registration_result = wp_create_user( $username, $password, $email_ );
+		$wp_update_result = wp_update_user( array( "ID" => $wp_registration_result, "role" => "subscriber" ) );
+
+		generate_email_notification( $wp_registration_result, "Welcome to Reactive!<br><br>Now you can login in your account, using this email and your password: ". $password ."<br><br>Happy reading!" );
+
+		echo json_encode( "Welcome to Reactive!" );
+	} else { echo json_encode( "Email is not set properly!" ); }
+
+	die( "" );
+}

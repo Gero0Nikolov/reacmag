@@ -354,6 +354,25 @@ jQuery( document ).ready(function(){
 			} );
 		} );
 	}
+
+	if ( jQuery( "#forgotten-password" ).length ) {
+		jQuery( "#forgotten-password" ).on( "click", function(){
+			email = jQuery( "#login-form #email" ).val().trim();
+
+			jQuery.ajax( {
+				url : ajax_url,
+				type : "POST",
+				data : {
+					action : "reset_reactive_password",
+					email : email
+				},
+				success : function( response ) {
+					response = JSON.parse( response );
+					trowError( response );
+				}
+			} );
+		} );
+	}
 });
 
 function loginUser() {
@@ -433,4 +452,59 @@ function trowError( message ) {
 function removePopup() {
 	jQuery( "#popup" ).removeClass( "fadeIn" ).addClass( "fadeOut" );
 	setTimeout(function(){ jQuery( "#popup" ).remove(); }, 750);
+}
+
+function trowSubscribeMessage() {
+	view_ = "\
+	<div id='popup' class='animated fadeIn'>\
+		<div id='popup-inner'>\
+			<button id='popup-closer' class='close-button'>\
+				<span class='bar'></span>\
+				<span class='bar'></span>\
+			</button>\
+			<h1 class='popup-title'>Subscribe to our weekly newsletter!</h1>\
+			<input id='email-subscriber' type='email' placeholder='Your email...' style='text-align: center;'>\
+		</div>\
+	</div>\
+	";
+
+	jQuery( "body" ).append( view_ );
+
+	jQuery( "#popup #popup-closer" ).on( "click", function(){
+		var days = 7;
+		var date = new Date();
+		var res = date.setTime( date.getTime() + ( days * 24 * 60 * 60 * 1000 ) );
+		date = new Date( res );
+
+		document.cookie = "subscribe_popup_cookie=set; expires="+ date +"; path=/;";
+
+		removePopup();
+	} );
+
+	jQuery( "#popup #popup-inner #email-subscriber" ).focus().on( "keyup", function( e ){
+		if ( e.keyCode == 13 ) {
+			email = jQuery( this ).val().trim();
+			jQuery.ajax( {
+				url : ajax_url,
+				type : "POST",
+				data : {
+					action : "add_subscriber",
+					email : email
+				},
+				success : function( response ){
+					response = JSON.parse( response );
+					trowError( response );
+
+					if ( response == "Welcome to Reactive!" ) {
+						var days = 7;
+						var date = new Date();
+						var res = date.setTime( date.getTime() + ( days * 24 * 60 * 60 * 1000 ) );
+						date = new Date( res );
+
+						document.cookie = "subscribe_popup_cookie=set; expires="+ date +"; path=/;";
+					}
+				}
+			} );
+		}
+	} );
 }

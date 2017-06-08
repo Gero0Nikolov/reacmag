@@ -1490,6 +1490,16 @@ body { background: #000; }
 		-webkit-overflow-scrolling: touch;
 		position: static;
 
+		.popup-title {
+			display: block;
+			font-family: "PlayFair Display", serif;
+			font-size: 2.5rem;
+			font-weight: normal;
+			color: #333;
+			letter-spacing: 1px;
+			text-align: center;
+		}
+
 		.text {
 			display: block;
 			font-family: "PlayFair Display", serif;
@@ -2595,6 +2605,26 @@ body { background: #000; }
 		border-color: #fff;
 		background: #2ecc71;
 	}
+}
+
+.text-button {
+	display: inline-block;
+    font-family: $content_font;
+    font-size: 1rem;
+    font-weight: normal;
+    color: #777;
+    letter-spacing: 1px;
+    line-height: 100%;
+    padding: 0.5em 0;
+    background: none;
+    border: none;
+    border-radius: 0;
+    margin: 0 0 0.5em;
+	outline: 0;
+
+	&:hover,
+	&:active,
+	&:focus { color: #333; }
 }
 
 .quote {

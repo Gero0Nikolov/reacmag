@@ -8,9 +8,7 @@
  *
  * @package Reactive_Magazine
  */
-
  $device_ = wp_is_mobile() ? "mobile" : "desktop" ;
-
 ?><!DOCTYPE html>
 <html <?php language_attributes(); ?>>
 <head>

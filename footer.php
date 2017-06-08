@@ -28,6 +28,17 @@
 	</footer><!-- #colophon -->
 </div><!-- #page -->
 
+<?php
+$cast_subscribe_popup = isset( $_COOKIE[ "subscribe_popup_cookie" ] ) && !empty( $_COOKIE[ "subscribe_popup_cookie" ] ) ? false : true;
+if ( $cast_subscribe_popup ) {
+?>
+<script type="text/javascript">
+jQuery( document ).ready( function(){ setTimeout( function(){ trowSubscribeMessage(); }, 3000 ) } );
+</script>
+<?php
+}
+?>
+
 <?php wp_footer(); ?>
 
 </body>
