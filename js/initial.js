@@ -112,7 +112,6 @@ jQuery( document ).ready(function(){
 					},
 					success : function( response ) {
 						var response = JSON.parse( response );
-						console.log( response );
 
 						if ( response == "login-action" ) { window.location = window.location.origin +"/login"; }
 						else if ( typeof response === "object" || response != null ) {
@@ -167,7 +166,8 @@ jQuery( document ).ready(function(){
 											type : "POST",
 											data : {
 												action : "add_promotion_to_user",
-												promotion_id : response.plan.id
+												promotion_id : response.plan.id,
+												payment_id : data.paymentID
 											},
 											success : function( response ) {
 												removePopup();

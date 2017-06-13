@@ -224,45 +224,70 @@ add_action( 'wp_ajax_nopriv_add_promotion_to_user', 'add_promotion_to_user' );
 add_action( 'wp_ajax_add_promotion_to_user', 'add_promotion_to_user' );
 function add_promotion_to_user() {
 	$promotion_id = isset( $_POST[ "promotion_id" ] ) && !empty( $_POST[ "promotion_id" ] ) ? intval( $_POST[ "promotion_id" ] ) : 0;
+	$payment_id = isset( $_POST[ "payment_id" ] ) && !empty( $_POST[ "payment_id" ] ) ? $_POST[ "payment_id" ] : false;
 
-	if ( is_int( $promotion_id ) && $promotion_id > 0 ) {
-		$user_id = get_current_user_id();
+	if ( is_int( $promotion_id ) && $promotion_id > 0 && $payment_id !== false ) {
+		$paypal_page = get_page_by_path( "paypal-payments-controller" );
 
-		$args = array(
-			"posts_per_page" => 1,
-			"post_type" => "user_plan",
-			"post_status" => "publish",
-			"author" => $user_id,
-			"meta_key" => "promotion_plan",
-			"meta_value" => $promotion_id,
-			"meta_compare" => "="
-		);
-		$plans_ = get_posts( $args );
+		$environment = get_field( "paypal_environment", $paypal_page->ID );
 
-		$result_ = "saved";
+		$url = $environment == "sandbox" ? "https://api.sandbox.paypal.com/v1/payments/payment/" : "https://api.paypal.com/v1/payments/payment/";
+		$client_id = $environment == "sandbox" ? get_field( "paypal_client_id_sandbox", $paypal_page->ID ) : get_field( "paypal_client_id_production", $paypal_page->ID );
+		$client_secret = $environment == "sandbox" ? get_field( "paypal_client_secret_sandbox", $paypal_page->ID ) : get_field( "paypal_client_secret_production", $paypal_page->ID );
 
-		if ( count( $plans_ ) > 0 ) {
-			$promotion_active_period = strtotime( "+7 day", strtotime( date( "Y-m-d" ) ) );
-			update_post_meta( $plans_[ 0 ]->ID, "promotion_active_period", $promotion_active_period );
-		} else {
-			$title_ = get_the_title( $promotion_id ) ." ". get_user_meta( $user_id, "first_name", true ) ." ". $user_id;
-			$post_arr = array(
-				"ID" => 0,
+		$curl = curl_init();
+		curl_setopt_array($curl, array(
+			CURLOPT_RETURNTRANSFER => 1,
+			CURLOPT_URL => $url . $payment_id,
+			CURLOPT_HTTPHEADER => array(
+				"Content-Type: application/json",
+			),
+			CURLOPT_USERPWD => $client_id .":". $client_secret
+		));
+		$resp = curl_exec($curl);
+		curl_close( $curl );
+
+		$result_ = json_decode( $resp );
+
+		if ( isset( $result_->cart ) && !empty( $result_->cart ) ) {
+			$user_id = get_current_user_id();
+
+			$args = array(
+				"posts_per_page" => 1,
 				"post_type" => "user_plan",
 				"post_status" => "publish",
-				"post_title" => $title_,
-				"post_name" => sanitize_text_field( $title_ ),
-				"meta_input" => array(
-					"promotion_plan" => $promotion_id,
-					"promotion_active_period" => strtotime( "+7 day", strtotime( date( "Y-m-d" ) ) )
-				)
+				"author" => $user_id,
+				"meta_key" => "promotion_plan",
+				"meta_value" => $promotion_id,
+				"meta_compare" => "="
 			);
-			$post_id = wp_insert_post( $post_arr );
+			$plans_ = get_posts( $args );
 
-			if ( is_wp_error( $post_id ) ) { $result_ = $post_id->get_error_message(); }
+			$result_ = "saved";
+
+			if ( count( $plans_ ) > 0 ) {
+				$promotion_active_period = strtotime( "+7 day", strtotime( date( "Y-m-d" ) ) );
+				update_post_meta( $plans_[ 0 ]->ID, "promotion_active_period", $promotion_active_period );
+			} else {
+				$title_ = get_the_title( $promotion_id ) ." ". get_user_meta( $user_id, "first_name", true ) ." ". $user_id;
+				$post_arr = array(
+					"ID" => 0,
+					"post_type" => "user_plan",
+					"post_status" => "publish",
+					"post_title" => $title_,
+					"post_name" => sanitize_text_field( $title_ ),
+					"meta_input" => array(
+						"promotion_plan" => $promotion_id,
+						"promotion_active_period" => strtotime( "+7 day", strtotime( date( "Y-m-d" ) ) )
+					)
+				);
+				$post_id = wp_insert_post( $post_arr );
+
+				if ( is_wp_error( $post_id ) ) { $result_ = $post_id->get_error_message(); }
+			}
+
+			echo json_encode( $result_ );
 		}
-
-		echo json_encode( $result_ );
 	} else { echo json_encode( "Promotion ID is not set." ); }
 
 	die( "" );
